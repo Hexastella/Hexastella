@@ -47,7 +47,7 @@ public class PlayerShooting : MonoBehaviour
     public void DisableEffects ()
     {
         gunLine.enabled = false;
-        gunLight.enabled = false;
+//        gunLight.enabled = false;
     }
 
 

@@ -33,6 +33,9 @@ public class EnemyAttack : MonoBehaviour
     }
 
 
+
+
+
     void OnTriggerExit (Collider other)
     {
         if(other.gameObject == player)
