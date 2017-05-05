@@ -14146,9 +14146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e27ba26d5b24d2e8c555ff48a3a65b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportLabel: {fileID: 1411977512}
-  objectToTeleport: {fileID: 1722090263}
-  toLocation: {fileID: 754204334}
 --- !u!23 &422217588
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21803,7 +21800,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 10
+    widthMultiplier: 20
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -21957,7 +21954,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 141074272
+  randomSeed: 1680479084
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -22337,7 +22334,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 100
+    maxNumParticles: 0
     size3D: 0
     rotation3D: 0
     gravityModifier:
@@ -25546,9 +25543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e27ba26d5b24d2e8c555ff48a3a65b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teleportLabel: {fileID: 1411977512}
-  objectToTeleport: {fileID: 1722090263}
-  toLocation: {fileID: 1231296684}
 --- !u!23 &888520856
 MeshRenderer:
   m_ObjectHideFlags: 0

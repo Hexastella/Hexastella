@@ -258,28 +258,51 @@ public class EnemyAttack : MonoBehaviour
 
 
 		// State Two Code Here
-		print (" YOU ARE IN STATE TWO");
+		print ("YOU ARE IN STATE TWO");
 
 
 			//OnCollide (); 
-			WaveAttack (); 
-		    Audio.Play ();
-
-			// Print a message for debugging only
-			//print ("ShotOnce");
 
 
 
-	      	print ("Attacking NOW");
+		// While the player health is above 80 use the wave attack 
+		while (mainPlayerHealth.currentHealth > 80) {
+			
+			
+			//shootTime += Time.deltaTime;
 
 
+				//if (shootTime >= timePeriod) {
+				//	shootTime = shootTime - timePeriod;
+
+			// Wait for defined amount of time before executing next Wave Attack
+				yield return new WaitForSeconds(1f);
+
+					// Call the Wave Attack Functio every set amount of time predefined
+					WaveAttack (); 
+
+
+					Audio.Play ();
+
+					// Print a message for debugging only
+					print ("ShotOnce");
+
+
+				yield return null;
+
+		
+
+			}
+
+
+		print ("Switching States");
 		//Switch the state to STATE THREE
 		SetState(State.Idle);
 
 
 
 		// Pauses the execution of this method for one frame
-		yield return null;
+		//yield return null;
 
 	}
 
@@ -289,10 +312,14 @@ public class EnemyAttack : MonoBehaviour
 	IEnumerator OnIdle() 
 	{
 
-		print(" YOU ARE IN STATE THREE");
+		print("YOU ARE IN STATE THREE");
 
+			
 
-		WaveAttack (); 
+	
+		WaveAttack ();
+
+		
 
 		// Pauses the execution of this method for one frame
 		yield return null;
