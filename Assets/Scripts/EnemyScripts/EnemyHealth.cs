@@ -14,7 +14,7 @@ public class EnemyHealth : MonoBehaviour
     ParticleSystem hitParticles;
     CapsuleCollider capsuleCollider;
     bool isDead;
-    bool isSinking;
+    //bool isSinking;
 
 
     void Awake ()
@@ -30,10 +30,10 @@ public class EnemyHealth : MonoBehaviour
 
     void Update ()
     {
-        if(isSinking)
-        {
-            transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
-        }
+        //if(isSinking)
+        //{
+        //    transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
+        //}
     }
 
 

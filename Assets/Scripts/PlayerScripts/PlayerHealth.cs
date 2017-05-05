@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
     AudioSource playerAudio;
     PlayerController playerController;
     bool isDead;
-    bool damaged;
+    //bool damaged;
 
     void Awake()
     {
@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
-        damaged = true;
+        //damaged = true;
 
         currentHealth -= amount;
 
