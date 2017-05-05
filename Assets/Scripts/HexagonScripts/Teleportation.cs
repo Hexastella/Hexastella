@@ -10,6 +10,7 @@ public class Teleportation : MonoBehaviour
 	public GameObject objectToTeleport;
 	// Create a public transform where you create a empty GameObject where the player will teleport to.
 	public Transform toLocation;
+
 	void Start()
 	{
 
