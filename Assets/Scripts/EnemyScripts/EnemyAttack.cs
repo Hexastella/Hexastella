@@ -447,7 +447,4 @@ public class EnemyAttack : MonoBehaviour
 
 	}
 
-
-	void 
-
 }
