@@ -71,18 +71,4 @@ public class EnemyHealth : MonoBehaviour
 
 
     }
-
-
-    public void StartSinking ()
-    {
-
-		GetComponent <UnityEngine.AI.NavMeshAgent> ().enabled = false;
-		GetComponent <Rigidbody> ().isKinematic = true;
-		isSinking = true;
-		enemyAudio.clip = deathClip;
-
-		//ScoreManager.score += scoreValue;
-		Destroy (gameObject, 2f);
-       
-    }
 }
