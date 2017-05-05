@@ -1,4 +1,10 @@
-﻿using UnityEngine;
+﻿//  EnemyAttack.CS
+//  Copyright © 2017 Jaxon Stevens. All rights reserved.
+// Created by Jaxon Stevens and Hillary Ocando
+
+// Created in part of our VFS game final project.
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -47,9 +53,7 @@ public class EnemyAttack : MonoBehaviour
 	float effectsDisplayTime = 0.2f;
 
 
-
 	// From EnemyShooting Script NEW 
-
 
 	Animator anim;
 	GameObject player;
@@ -233,7 +237,7 @@ public class EnemyAttack : MonoBehaviour
 	}
 
 	// STATE ONE
-	// This is the initial State where the AI will walk towards the player 
+	// Initial State where the AI will walk towards the player 
 	IEnumerator OnWalk ()
 	{
 		//This is called once, when I enter the OnIdle Coroutine
@@ -248,11 +252,17 @@ public class EnemyAttack : MonoBehaviour
 			
 
 		yield return null;
+
+
+		// Switching States Message
+		print ("Switching States");
 	}
 
 
 
+
 	// STATE TWO
+	// WAVE ATTACK STATE
 	IEnumerator OnWaveAttack()
 	{
 
@@ -261,40 +271,29 @@ public class EnemyAttack : MonoBehaviour
 		print ("YOU ARE IN STATE TWO");
 
 
-			//OnCollide (); 
-
-
 
 		// While the player health is above 80 use the wave attack 
 		while (mainPlayerHealth.currentHealth > 80) {
 			
-			
-			//shootTime += Time.deltaTime;
 
-
-				//if (shootTime >= timePeriod) {
-				//	shootTime = shootTime - timePeriod;
 
 			// Wait for defined amount of time before executing next Wave Attack
 				yield return new WaitForSeconds(1f);
 
 					// Call the Wave Attack Functio every set amount of time predefined
 					WaveAttack (); 
-
-
+			        // Play linked audio
 					Audio.Play ();
 
 					// Print a message for debugging only
 					print ("ShotOnce");
 
-
+			    // Must yield return null
 				yield return null;
-
-		
-
+	
 			}
 
-
+		// Switching States Message
 		print ("Switching States");
 		//Switch the state to STATE THREE
 		SetState(State.Idle);
@@ -314,15 +313,13 @@ public class EnemyAttack : MonoBehaviour
 
 		print("YOU ARE IN STATE THREE");
 
-			
-
-	
-		WaveAttack ();
-
-		
-
+		// Must yield return null
 		// Pauses the execution of this method for one frame
 		yield return null;
+
+
+		// Switching States Message
+		print ("Switching States");
 
 	
 
@@ -333,6 +330,9 @@ public class EnemyAttack : MonoBehaviour
 	IEnumerator OnLaserAttack()
 	{
 
+
+		// Must yield return null
+		// Pauses the execution of this method for one frame
 		yield return null; 
 
 	}
@@ -344,7 +344,6 @@ public class EnemyAttack : MonoBehaviour
 	void WaveAttack ()
 	{
 		//timer = 0f;
-	
 
 		// Do damange to the player via the WaveAttack from the player health script.
 
@@ -385,7 +384,6 @@ public class EnemyAttack : MonoBehaviour
 
 				//mainPlayerHealth.TakeDamage (attackDamage);
 
-
 			}
 			gunLine.SetPosition (1, shootHit.point);
 		}
@@ -397,5 +395,59 @@ public class EnemyAttack : MonoBehaviour
 
 
 
+	// Laser Attack Method
+	void LaserAttackMethod()
+	{
+
+
+	}
+
+	// Particle Attack Method
+	void ParticleAttackMethod() 
+	{
+
+
+	}
+
+	// Activate Hexagon Method
+	void ActivateHexagonMethod() 
+	{
+
+
+	}
+
+	// Check if the player is in reach of attack method
+	void CheckPlayerMethod() 
+
+	{
+
+
+	}
+
+
+	// Check player distance method 
+	void CheckPlayerDistanceMethod() 
+	{
+
+	}
+
+
+	// Check cooldown timer 
+	void CheckCoolDownTimer() 
+
+	{
+
+	}
+
+	// Use Boss Tenticle Attack Method
+	void TenticleAttackMethod() 
+
+	{
+
+
+	}
+
+
+	void 
 
 }
