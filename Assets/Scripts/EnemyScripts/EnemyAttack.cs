@@ -58,6 +58,7 @@ public class EnemyAttack : MonoBehaviour
 	// float timer;
 
 
+
 	void Awake ()
 	{
 		player = GameObject.FindGameObjectWithTag ("Player");
@@ -99,7 +100,7 @@ public class EnemyAttack : MonoBehaviour
 
 
 	// This is the 
-	void Update () {
+	/* void Update () {
 
 
 		shootTime += Time.deltaTime;
@@ -119,9 +120,9 @@ public class EnemyAttack : MonoBehaviour
 
 
 
-		}
+		} 
 
-	} 
+	} /*/
 
 
 
@@ -161,14 +162,154 @@ public class EnemyAttack : MonoBehaviour
 
 		//}
 
-
 		// Print a message for debugging only
 		print ("PARTICLES");
 	
 
 
+	}
+
+
+
+
+	private enum State
+	{
+
+		Walk,
+		WaveAttack,
+		Idle,
+		LaserAttack
 
 	}
+
+	// The initial start state
+	 void Start()
+	{
+		// Set Initial State here
+		SetState (State.Walk);
+
+  }
+
+
+
+
+	private State currentState;
+
+
+	// Create ans set states for AI 
+	private void SetState (State newState)
+	{
+
+		StopAllCoroutines ();
+		currentState = newState;
+
+
+		switch (currentState) {
+
+
+		case State.Walk:
+			StartCoroutine (OnWalk ());
+			break;
+
+		case State.WaveAttack:
+			StartCoroutine (OnWaveAttack ());
+			break;
+
+
+		case State.Idle:
+			StartCoroutine (OnIdle ());
+			break; 
+
+
+		case State.LaserAttack:
+			StartCoroutine (OnLaserAttack());
+			break;
+
+
+		}
+
+
+
+	}
+
+	// STATE ONE
+	// This is the initial State where the AI will walk towards the player 
+	IEnumerator OnWalk ()
+	{
+		//This is called once, when I enter the OnIdle Coroutine
+
+	         
+		    print("YOU ARE IN STATE ONE");
+
+
+		    // Switch the state to the Wave Attack State
+			SetState(State.WaveAttack);
+
+			
+
+		yield return null;
+	}
+
+
+
+	// STATE TWO
+	IEnumerator OnWaveAttack()
+	{
+
+
+		// State Two Code Here
+		print (" YOU ARE IN STATE TWO");
+
+
+			//OnCollide (); 
+			WaveAttack (); 
+		    Audio.Play ();
+
+			// Print a message for debugging only
+			//print ("ShotOnce");
+
+
+
+	      	print ("Attacking NOW");
+
+
+		//Switch the state to STATE THREE
+		SetState(State.Idle);
+
+
+
+		// Pauses the execution of this method for one frame
+		yield return null;
+
+	}
+
+
+
+	// STATE THREE 
+	IEnumerator OnIdle() 
+	{
+
+		print(" YOU ARE IN STATE THREE");
+
+
+		WaveAttack (); 
+
+		// Pauses the execution of this method for one frame
+		yield return null;
+
+	
+
+	}
+
+
+	// STATE FOUR
+	IEnumerator OnLaserAttack()
+	{
+
+		yield return null; 
+
+	}
+
 
 
 	// This is the wave attack method that will be used for the enemy wave attack as one of the enemys AI features.
@@ -194,7 +335,6 @@ public class EnemyAttack : MonoBehaviour
 		shootRay.origin = transform.position;
 		shootRay.direction = transform.forward;
 
-		//attackPlayer (); 
 
 
 		if(Physics.Raycast (shootRay, out shootHit, projectileRange, PlayerDamageZone))
@@ -212,7 +352,6 @@ public class EnemyAttack : MonoBehaviour
 				//  Player will take damage when hit by the LineRenderer. 
 				mainPlayerHealth.TakeDamage (DamageToGive);
 
-			
 				// Print message for debugging only
 				print("YAY YOU GOT HIT");
 
