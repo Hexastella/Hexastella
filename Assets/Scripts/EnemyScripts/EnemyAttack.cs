@@ -387,8 +387,6 @@ public class EnemyAttack : MonoBehaviour
 
 
 
-		// Print a message for debugging only
-		print ("ATTACKING PLAYER WITH PARTICLES");
 
 
 
