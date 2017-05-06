@@ -212,9 +212,10 @@ public class EnemyAttack : MonoBehaviour
 	IEnumerator OnWalk ()
 	{
 
+		print("STARTING STATE ONE");
 
 
-		while (mainPlayerHealth.currentHealth >= 300) 
+		while (mainPlayerHealth.currentHealth >= 250) 
 
 		{
 
@@ -227,7 +228,7 @@ public class EnemyAttack : MonoBehaviour
 			// Particle System Method
 			OnParticleCollision (gameObject);
 
-			print("ParticleCollided");
+			print ("Particle Attack used");
 
 
 		}
@@ -266,7 +267,7 @@ public class EnemyAttack : MonoBehaviour
 			Audio.Play ();
 
 			// Print a message for debugging only
-			print ("ShotOnce");
+			print ("Wave Attack Used");
 
 			// Must yield return null
 			yield return null;
