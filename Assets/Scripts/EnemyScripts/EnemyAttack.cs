@@ -105,27 +105,16 @@ public class EnemyAttack : MonoBehaviour
 
 	// This is the 
 	/* void Update () {
-
-
 		shootTime += Time.deltaTime;
-
 		if (shootTime >= timePeriod) {
 			shootTime = shootTime - timePeriod;
-
-
 			//OnCollide (); 
 			// Call the Wave Attack Functio every set amount of time predefined
 			WaveAttack (); 
-
 			//  Audio.Play ();
-
 			// Print a message for debugging only
 			print ("ShotOnce");
-
-
-
 		} 
-
 	} /*/
 
 
@@ -154,24 +143,6 @@ public class EnemyAttack : MonoBehaviour
 	}
 
 
-	// Particle collider 
-	// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
-	void OnParticleCollision(GameObject other) {
-		Rigidbody body = other.GetComponent<Rigidbody>();
-
-		//if (body) {
-			//Vector3 direction = other.transform.position - transform.position;
-			//direction = direction.normalized;
-			//body.AddForce (direction * 20); 
-
-		//}
-
-		// Print a message for debugging only
-		print ("PARTICLES");
-	
-
-
-	}
 
 
 
@@ -187,12 +158,12 @@ public class EnemyAttack : MonoBehaviour
 	}
 
 	// The initial start state
-	 void Start()
+	void Start()
 	{
 		// Set Initial State here
 		SetState (State.Walk);
 
-  }
+	}
 
 
 
@@ -240,25 +211,36 @@ public class EnemyAttack : MonoBehaviour
 	// Initial State where the AI will walk towards the player 
 	IEnumerator OnWalk ()
 	{
-		//This is called once, when I enter the OnIdle Coroutine
-
-	         
-		    print("YOU ARE IN STATE ONE");
 
 
-		    // Switch the state to the Wave Attack State
-			SetState(State.WaveAttack);
 
-			
+		while (mainPlayerHealth.currentHealth >= 300) 
+
+		{
+
+			print("YOU ARE IN STATE ONE");
+
+			yield return new WaitForSeconds(1f);
+
+
+
+			// Particle System Method
+			OnParticleCollision (gameObject);
+
+			print("ParticleCollided");
+
+
+		}
+
+		// Switch the state to the Wave Attack State
+		SetState(State.WaveAttack);
+
 
 		yield return null;
-
 
 		// Switching States Message
 		print ("Switching States");
 	}
-
-
 
 
 	// STATE TWO
@@ -273,25 +255,23 @@ public class EnemyAttack : MonoBehaviour
 
 
 		// While the player health is above 80 use the wave attack 
-		while (mainPlayerHealth.currentHealth > 80) {
-			
-
+		while (mainPlayerHealth.currentHealth >= 50) {
 
 			// Wait for defined amount of time before executing next Wave Attack
-				yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(1f);
 
-					// Call the Wave Attack Functio every set amount of time predefined
-					WaveAttack (); 
-			        // Play linked audio
-					Audio.Play ();
+			// Call the Wave Attack Functio every set amount of time predefined
+			WaveAttack (); 
+			// Play linked audio
+			Audio.Play ();
 
-					// Print a message for debugging only
-					print ("ShotOnce");
+			// Print a message for debugging only
+			print ("ShotOnce");
 
-			    // Must yield return null
-				yield return null;
-	
-			}
+			// Must yield return null
+			yield return null;
+
+		}
 
 		// Switching States Message
 		print ("Switching States");
@@ -321,7 +301,7 @@ public class EnemyAttack : MonoBehaviour
 		// Switching States Message
 		print ("Switching States");
 
-	
+
 
 	}
 
@@ -344,20 +324,15 @@ public class EnemyAttack : MonoBehaviour
 	void WaveAttack ()
 	{
 		//timer = 0f;
-
 		// Do damange to the player via the WaveAttack from the player health script.
-
 		// Play the audio sound of the attack 
 		Audio.Play ();
 
 		// Particle effects
 		gunParticles.Stop ();
 		gunParticles.Play ();
-
-
 		gunLine.enabled = true;
 		gunLine.SetPosition (0, transform.position);
-
 		shootRay.origin = transform.position;
 		shootRay.direction = transform.forward;
 
@@ -373,16 +348,10 @@ public class EnemyAttack : MonoBehaviour
 			// If the playerHealth is higher than 0 then damage the player using the particle effect
 			if(playerHealth.currentHealth > 0)
 			{
-
-
 				//  Player will take damage when hit by the LineRenderer. 
 				mainPlayerHealth.TakeDamage (DamageToGive);
-
 				// Print message for debugging only
 				print("YAY YOU GOT HIT");
-
-
-				//mainPlayerHealth.TakeDamage (attackDamage);
 
 			}
 			gunLine.SetPosition (1, shootHit.point);
@@ -393,6 +362,36 @@ public class EnemyAttack : MonoBehaviour
 		}
 	}
 
+
+
+	// Particle Collider System
+	// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
+	void OnParticleCollision(GameObject other) {
+		Rigidbody body = other.GetComponent<Rigidbody>();
+
+		if (body) {
+			Vector3 direction = other.transform.position - transform.position;
+			direction = direction.normalized;
+
+			//}
+
+
+
+			gunParticles.Play ();
+			mainPlayerHealth.TakeDamage (DamageToGive);
+			gunParticles.Stop ();
+
+
+		}
+
+
+
+		// Print a message for debugging only
+		print ("ATTACKING PLAYER WITH PARTICLES");
+
+
+
+	}
 
 
 	// Laser Attack Method
@@ -446,5 +445,13 @@ public class EnemyAttack : MonoBehaviour
 
 
 	}
+
+
+	void BackAwayFromPlayer() {
+
+
+	}
+
+
 
 }
