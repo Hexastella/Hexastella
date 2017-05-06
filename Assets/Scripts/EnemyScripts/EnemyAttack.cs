@@ -7,6 +7,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -212,9 +213,11 @@ public class EnemyAttack : MonoBehaviour
 	IEnumerator OnWalk ()
 	{
 
+		print("STARTING STATE ONE");
 
 
-		while (mainPlayerHealth.currentHealth >= 300) 
+	
+		while (mainPlayerHealth.currentHealth >= 250) 
 
 		{
 
@@ -227,7 +230,7 @@ public class EnemyAttack : MonoBehaviour
 			// Particle System Method
 			OnParticleCollision (gameObject);
 
-			print("ParticleCollided");
+			print ("Particle Attack used");
 
 
 		}
@@ -266,10 +269,12 @@ public class EnemyAttack : MonoBehaviour
 			Audio.Play ();
 
 			// Print a message for debugging only
-			print ("ShotOnce");
+			print ("Wave Attack Used");
 
 			// Must yield return null
 			yield return null;
+
+		
 
 		}
 
@@ -278,7 +283,7 @@ public class EnemyAttack : MonoBehaviour
 		//Switch the state to STATE THREE
 		SetState(State.Idle);
 
-
+	
 
 		// Pauses the execution of this method for one frame
 		//yield return null;
@@ -302,7 +307,27 @@ public class EnemyAttack : MonoBehaviour
 		print ("Switching States");
 
 
+		// Switch the scene to the lose state when you lose the game
+		// When the player has a health of the set value then play the lose game music and switch the scene
+		if (mainPlayerHealth.currentHealth <=0) {
 
+			// Play a audio file by name in the unity Resources folder.
+			// This will only work if its in the Resources folder.
+			AudioSource audio = gameObject.AddComponent<AudioSource >();
+			audio.PlayOneShot((AudioClip)Resources.Load("MainMenuMusic"));
+
+			// Wait for ten seconds before switching the scene to the menu
+			yield return new WaitForSeconds (10f);
+
+			SceneManager.LoadScene ("MainScene");
+
+
+
+		}
+	
+
+
+	
 	}
 
 
@@ -373,9 +398,6 @@ public class EnemyAttack : MonoBehaviour
 			Vector3 direction = other.transform.position - transform.position;
 			direction = direction.normalized;
 
-			//}
-
-
 
 			gunParticles.Play ();
 			mainPlayerHealth.TakeDamage (DamageToGive);
@@ -386,8 +408,6 @@ public class EnemyAttack : MonoBehaviour
 
 
 
-		// Print a message for debugging only
-		print ("ATTACKING PLAYER WITH PARTICLES");
 
 
 
