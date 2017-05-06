@@ -7,6 +7,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class EnemyAttack : MonoBehaviour
 {
@@ -302,6 +303,8 @@ public class EnemyAttack : MonoBehaviour
 		// Switching States Message
 		print ("Switching States");
 
+		// Switch the scenes when you lose the game.
+		SceneManager.LoadScene ("MainScene");
 
 
 	}
@@ -373,9 +376,6 @@ public class EnemyAttack : MonoBehaviour
 		if (body) {
 			Vector3 direction = other.transform.position - transform.position;
 			direction = direction.normalized;
-
-			//}
-
 
 
 			gunParticles.Play ();
