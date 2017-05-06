@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameScene : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+    public static bool gameOver;
+
 	void Update () {
-		
-	}
+        //Lock the cursor
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if (gameOver)
+        {
+            SceneManager.LoadScene("WinOrLoseScreen");
+        }
+    }
 }

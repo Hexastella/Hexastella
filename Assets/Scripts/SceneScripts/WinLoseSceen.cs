@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WinLoseSceen : MonoBehaviour {
 
@@ -13,4 +14,9 @@ public class WinLoseSceen : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void OnGoToMainMenu()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }

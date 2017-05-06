@@ -11,7 +11,7 @@ public class PlayerController : Unit {
 
     public Transform camPivot;
 
-	private float raycastDistance = 4.5f;
+	private float raycastDistance = 1f;
 
 	protected override void Start()
 	{
@@ -19,9 +19,6 @@ public class PlayerController : Unit {
 	}
 
 	void Update() {
-
-        //Lock the cursor
-        Cursor.lockState = CursorLockMode.Locked;
 
         if(transform.position.y < deathPos)
         {
@@ -51,6 +48,15 @@ public class PlayerController : Unit {
 		// Rotates a vector from local to world space
 		rb.velocity = transform.TransformVector(input);
 
+        if(verticalInput > 0.1f || verticalInput < -0.1f)
+        {
+            anim.SetBool("Run", true);
+        }
+        else
+        {
+            anim.SetBool("Run", false);
+        }
+
         //anim.SetFloat("HorizontalSpeed", horizontalInput);
         //anim.SetFloat("VerticalSpeed", verticalInput);
 
@@ -63,7 +69,8 @@ public class PlayerController : Unit {
         //Dodge roll
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -40f);
+            //anim.SetTrigger("Roll");
+            transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -20f);
         }
 
     }
