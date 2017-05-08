@@ -15835,7 +15835,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1313823301
+  randomSeed: -433890261
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -33572,6 +33572,7 @@ GameObject:
   - component: {fileID: 1722090267}
   - component: {fileID: 1722090269}
   - component: {fileID: 1722090268}
+  - component: {fileID: 1722090272}
   m_Layer: 8
   m_Name: PlayerController
   m_TagString: Player
@@ -33758,6 +33759,23 @@ CapsuleCollider:
   m_Height: 12.44
   m_Direction: 1
   m_Center: {x: 0, y: 5.6, z: -0.25}
+--- !u!95 &1722090272
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722090263}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1727070511
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,13 +20,9 @@
 	     internal Color waveAttackColor2 = Color.red; 
 	   
 
-		// Changed Line Renderer Wave Attack Colors
-		internal Color WaveAttackChangedColor = Color.white;
-		internal Color WaveAttackChangedColor2 = Color.yellow; 
-	    
-
-
-
+		// Laser Attack Line Renderer Wave Attack Colors
+		internal Color laserAttackColor = Color.white;
+		internal Color laserAttackColor2 = Color.yellow; 
 
 	   
 		internal Vector3 lineStartPos; 
@@ -51,8 +47,11 @@
 		EnemyAttack enemyAttack;
 
 		// LineRenderer which is used for the wave attack 
-		LineRenderer gunLine;
-		ParticleSystem gunParticles;
+		LineRenderer waveAttackLine;
+	    ParticleSystem gunParticles;
+
+	    // LineRenderer which is used for the laser attack
+	    LineRenderer laserAttackLine;
 
 		Ray shootRay = new Ray(); 
 
@@ -86,7 +85,10 @@
 			PlayerDamageZone = LayerMask.GetMask ("Shootable");
 
 			gunParticles = GetComponent<ParticleSystem> ();
-			gunLine = GetComponent <LineRenderer> ();
+		    // Wave Attack Line
+			waveAttackLine = GetComponent <LineRenderer> ();
+		    // Laser Attack Line 
+		    laserAttackLine = GetComponent<LineRenderer> (); 
 			Audio = GetComponent<AudioSource> ();
 
 			mainPlayerHealth = player.GetComponent <PlayerHealth> ();
@@ -260,16 +262,16 @@
 			// State Two Code Here
 			print ("YOU ARE IN STATE TWO");
 		
-			// While the player health is above 80 use the wave attack 
+			// While the player health is higher than 150 use the wave attack 
 
-			   while (mainPlayerHealth.currentHealth >= 100) {
+			   while (mainPlayerHealth.currentHealth >= 150) {
 				// Wait for defined amount of time before executing next Wave Attack
 		
 				yield return new WaitForSeconds(1f);
 				// Call the Wave Attack Functio every set amount of time predefined
 				// Set the gunLine renderer to true so that when the boss shoots it will show the lineRenderer.
 
-			    gunLine.enabled = true; 
+			    waveAttackLine.enabled = true; 
 			   
 
 			    // Use the wave attack 
@@ -286,11 +288,10 @@
 			   // Wait for 0.1 seconds before setting the LineRenderer to false
 			   yield return new WaitForSeconds (0.1f);
 			// Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
-			   gunLine.enabled = false; 
+			   waveAttackLine.enabled = false; 
 
 
-
-			}
+			} // END WAVE ATTACK
 
 
 		//Switch the state to STATE THREE
@@ -310,21 +311,23 @@
 	    
 
 		// LASER ATTACK STATE
-		IEnumerator OnLaserAttack() 
-		{
+		IEnumerator OnLaserAttack()
+	{
 
-			print("YOU ARE IN STATE THREE");
+		print ("YOU ARE IN STATE THREE");
 
 
-			// Switch the scene to the lose state when you lose the game
-			// When the player has a health of the set value then play the lose game music and switch the scene
-			if (mainPlayerHealth.currentHealth >=5) {
+		// Switch the scene to the lose state when you lose the game
+		// When the player has a health of the set value then play the lose game music and switch the scene
 
-			yield return new WaitForSeconds(1f);
+		// When the player health is higher than 0 
+		while (mainPlayerHealth.currentHealth > 0) {
+
+			yield return new WaitForSeconds (1f);
 			// Call the Wave Attack Functio every set amount of time predefined
 			// Set the gunLine renderer to true so that when the boss shoots it will show the lineRenderer.
 
-			gunLine.enabled = true; 
+			laserAttackLine.enabled = true; 
 
 			// Change Line Renderer Colors 
 
@@ -335,35 +338,44 @@
 			Audio.Play ();
 
 			// Print a message for debugging only
-			print ("Wave Attack Used");
+			print ("Laser Attack Used");
 
 
 			// Wait for 0.1 seconds before setting the LineRenderer to false
 			yield return new WaitForSeconds (0.1f);
 			// Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
-			gunLine.enabled = false; 
+			laserAttackLine.enabled = false; 
 
-			print ("Switching to lose state");
 
+			print("Laser Attack Line");
+
+			if (mainPlayerHealth.currentHealth <= 0) {
+
+
+				print ("Reached this line");
+				//Switch the state to STATE THREE
+				SetState (State.PlayerDie);
+				print ("SWITCHED STATE");
+				// Must yield return null
+				yield return null;
 
 			}
 
-		// Must yield return null
-		yield return null;
+		} // END LASER ATTACK
 
-		SetState (State.PlayerDie); 
 
-		
-		}
+	}
+
+
 
 
 		// PLAYER DIE STATE
 		IEnumerator OnPlayerDie()
 		{
-	
+	     
 
 		print ("Player Die State");
-		if (mainPlayerHealth.currentHealth >=0) {
+		if (mainPlayerHealth.currentHealth == 0) {
 
 			// Play a audio file by name in the unity Resources folder.
 			// This will only work if its in the Resources folder.
@@ -376,7 +388,6 @@
 			SceneManager.LoadScene ("MainScene");
 
 		}
-			
 
 			// Must yield return null
 			// Pauses the execution of this method for one frame
@@ -404,15 +415,18 @@
 			Audio.Play ();
 
 
-		gunLine.material = new Material (Shader.Find("Particles/Additive"));
+		waveAttackLine.material = new Material (Shader.Find("Particles/Additive"));
 		// Set the new colors here
-		gunLine.SetColors (waveAttackColor, waveAttackColor2);
+		waveAttackLine.SetColors (waveAttackColor, waveAttackColor2);
 		 
 			// Particle effects
 			gunParticles.Stop ();
 			gunParticles.Play ();
-			gunLine.enabled = true;
-			gunLine.SetPosition (0, transform.position);
+			waveAttackLine.enabled = true;
+
+		  //  gunLine.SetWidth (1, 1); 
+
+			waveAttackLine.SetPosition (0, transform.position);
 			shootRay.origin = transform.position;
 			shootRay.direction = transform.forward;
 
@@ -422,9 +436,6 @@
 			{
 				
 				PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
-
-		
-
 
 				// If the playerHealth is higher than 0 then damage the player using the particle effect
 				if(playerHealth.currentHealth > 0)
@@ -436,11 +447,11 @@
 					print("PLAYER GOT HIT");
 
 				}
-				gunLine.SetPosition (1, shootHit.point);
+				waveAttackLine.SetPosition (1, shootHit.point);
 			}
 			else
 			{
-				gunLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
+				waveAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
 			}
 		}
 
@@ -456,15 +467,19 @@
 		Audio.Play ();
 
 
-		gunLine.material = new Material (Shader.Find("Particles/Additive"));
+		laserAttackLine.material = new Material (Shader.Find("Particles/Additive"));
 		// Set the new colors here
-		gunLine.SetColors (WaveAttackChangedColor,WaveAttackChangedColor2);
+		laserAttackLine.SetColors (laserAttackColor,laserAttackColor2);
+
+		  laserAttackLine.SetWidth (1, 1); 
+
 
 		// Particle effects
 		gunParticles.Stop ();
 		gunParticles.Play ();
-		gunLine.enabled = true;
-		gunLine.SetPosition (0, transform.position);
+
+		laserAttackLine.enabled = true;
+		laserAttackLine.SetPosition (0, transform.position);
 		shootRay.origin = transform.position;
 		shootRay.direction = transform.forward;
 
@@ -488,11 +503,11 @@
 				print("PLAYER GOT HIT");
 
 			}
-			gunLine.SetPosition (1, shootHit.point);
+			laserAttackLine.SetPosition (1, shootHit.point);
 		}
 		else
 		{
-			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
+			laserAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
 		}
 	}
 
