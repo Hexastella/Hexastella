@@ -15439,7 +15439,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805911790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 35.2, y: -1.1, z: -71}
+  m_LocalPosition: {x: 35.2, y: 4.1, z: -71}
   m_LocalScale: {x: 17.69719, y: 17.6972, z: 17.6972}
   m_Children:
   - {fileID: 2018110616}
@@ -15458,7 +15458,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 116c545c53e714e7fbef7ba928270a43, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -15628,11 +15628,11 @@ CapsuleCollider:
   m_GameObject: {fileID: 805911790}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   m_Radius: 0.5
   m_Height: 0.5
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!122 &805911801
 Halo:
   m_ObjectHideFlags: 0
@@ -15835,7 +15835,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -183718253
+  randomSeed: -1313823301
   InitialModule:
     serializedVersion: 3
     enabled: 1
