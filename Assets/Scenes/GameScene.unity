@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -33726,7 +33726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f269664c0c25248598d989cda4e367b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 100
+  startingHealth: 400
+  currentHealth: 0
   healthSlider: {fileID: 777057465}
   damageImage: {fileID: 1892573073}
   deathClip: {fileID: 8300000, guid: 1c32d175f8b4846de9c3dd3daa99f13e, type: 3}
