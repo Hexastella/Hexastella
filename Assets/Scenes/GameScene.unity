@@ -805,7 +805,7 @@ Transform:
   m_LocalScale: {x: 0.16782078, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &63588215
 GameObject:
@@ -2229,7 +2229,7 @@ Transform:
   - {fileID: 599810945}
   - {fileID: 967268489}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &279821634
 GameObject:
@@ -6218,7 +6218,7 @@ Transform:
   m_LocalScale: {x: 112.73468, y: 112.73485, z: 112.73485}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &724350902
 BoxCollider:
@@ -7400,10 +7400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenAttacks: 0.2
-  DamageToGive: 40
-  timeBetweenBullets: 0.15
-  projectileRange: 200
-  timePeriod: 1
   attackDamage: 12
 --- !u!195 &805911797
 NavMeshAgent:
@@ -11809,7 +11805,7 @@ RectTransform:
   - {fileID: 1892573072}
   - {fileID: 1213629156}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13614,7 +13610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1162175899
 GameObject:
@@ -13933,7 +13929,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1179020281
 GameObject:
@@ -15843,7 +15839,7 @@ Transform:
   m_Children:
   - {fileID: 2005677231}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1424997000
 BoxCollider:
@@ -17200,7 +17196,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1640197921
 GameObject:

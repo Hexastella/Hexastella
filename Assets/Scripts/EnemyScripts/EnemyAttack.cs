@@ -30,13 +30,13 @@
 
 		// From EnemyShooting Script NEW
 
-		public int DamageToGive = 10;
-		public float timeBetweenBullets = 0.15f;
-		public float projectileRange = 200f;
+	    internal int DamageToGive = 40;
+		internal float timeBetweenBullets = 0.15f;
+		internal float projectileRange = 200f;
 
 
-		private float shootTime = 1.0f;
-		public float timePeriod = 1.0f; 
+		internal float shootTime = 1.0f;
+		internal float timePeriod = 1.0f; 
 
 		float timer;
 		AudioSource Audio;
@@ -76,7 +76,7 @@
 		// float timer;
 
 
-
+	    // Awake Method
 		void Awake ()
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
@@ -367,8 +367,6 @@
 	}
 
 
-
-
 		// PLAYER DIE STATE
 		IEnumerator OnPlayerDie()
 		{
@@ -383,7 +381,7 @@
 			audio.PlayOneShot((AudioClip)Resources.Load("MainMenuMusic"));
 
 			// Wait for ten seconds before switching the scene to the menu
-			yield return new WaitForSeconds (10f);
+			yield return new WaitForSeconds (1f);
 
 			SceneManager.LoadScene ("MainScene");
 
@@ -424,7 +422,7 @@
 			gunParticles.Play ();
 			waveAttackLine.enabled = true;
 
-		  //  gunLine.SetWidth (1, 1); 
+		  // waveAttackLine.SetWidth (50, 50); 
 
 			waveAttackLine.SetPosition (0, transform.position);
 			shootRay.origin = transform.position;
