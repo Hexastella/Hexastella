@@ -15,6 +15,20 @@
 		//public int attackDamage = 10;
 
 
+	     // Line Renderer Wave Attack Colors 
+	     internal Color waveAttackColor = Color.white;
+	     internal Color waveAttackColor2 = Color.red; 
+	   
+
+		// Changed Line Renderer Wave Attack Colors
+		internal Color WaveAttackChangedColor = Color.white;
+		internal Color WaveAttackChangedColor2 = Color.yellow; 
+	    
+
+
+
+
+	   
 		internal Vector3 lineStartPos; 
 		internal Vector3 lineEndPos; 
 
@@ -243,19 +257,28 @@
 		IEnumerator OnWaveAttack()
 		{
 
-
 			// State Two Code Here
 			print ("YOU ARE IN STATE TWO");
 		
 			// While the player health is above 80 use the wave attack 
+		       
+	
 
 			   while (mainPlayerHealth.currentHealth >= 50) {
 				// Wait for defined amount of time before executing next Wave Attack
 		
+
+			gunLine.material = new Material (Shader.Find("Particles/Additive"));
+			// Set the new colors here
+			gunLine.SetColors (WaveAttackChangedColor, WaveAttackChangedColor2);
 				yield return new WaitForSeconds(1f);
 				// Call the Wave Attack Functio every set amount of time predefined
 				// Set the gunLine renderer to true so that when the boss shoots it will show the lineRenderer.
 			    gunLine.enabled = true; 
+
+		        // Change Line Renderer Colors 
+
+		
 			    WaveAttack (); 
 
 			    //DestroyImmediate(gunLine); 
@@ -352,6 +375,11 @@
 			// Play the audio sound of the attack 
 			Audio.Play ();
 
+
+		gunLine.material = new Material (Shader.Find("Particles/Additive"));
+		// Set the new colors here
+		gunLine.SetColors (waveAttackColor, waveAttackColor2);
+		 
 			// Particle effects
 			gunParticles.Stop ();
 			gunParticles.Play ();
@@ -367,6 +395,7 @@
 				
 				PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
 
+		
 
 
 				// If the playerHealth is higher than 0 then damage the player using the particle effect
@@ -376,7 +405,7 @@
 					mainPlayerHealth.TakeDamage (DamageToGive);
 					// Print message for debugging only
 
-					print("YAY YOU GOT HIT");
+					print("PLAYER GOT HIT");
 
 				}
 				gunLine.SetPosition (1, shootHit.point);
