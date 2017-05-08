@@ -15409,7 +15409,7 @@ GameObject:
   - component: {fileID: 805911797}
   m_Layer: 8
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15534,7 +15534,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805911790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d944acb2090d042b3b29153fbddd1f6e, type: 3}
   m_Name: 
@@ -15561,7 +15561,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805911790}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8faa055070a55481f80143620212af9b, type: 3}
   m_Name: 
@@ -15835,7 +15835,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -183718253
+  randomSeed: 1970688936
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -20538,7 +20538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &957337949
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -28988,7 +28988,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1411977513
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33665,7 +33665,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1722090263}
-  m_LocalRotation: {x: -0, y: -0.99594873, z: -0, w: 0.08992289}
+  m_LocalRotation: {x: -0, y: 0.9895872, z: -0, w: -0.14393489}
   m_LocalPosition: {x: 43.13, y: 0.68, z: 46.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -33673,7 +33673,7 @@ Transform:
   - {fileID: 6442725}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -169.682, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 196.551, z: 0}
 --- !u!54 &1722090266
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -33715,6 +33715,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5408c85978e2db64490f4898b0b39ca3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  raycastDistance: 15
+  attackDamage: 0
 --- !u!114 &1722090269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33727,6 +33729,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 100
+  currentHealth: 0
   healthSlider: {fileID: 777057465}
   damageImage: {fileID: 1892573073}
   deathClip: {fileID: 8300000, guid: 1c32d175f8b4846de9c3dd3daa99f13e, type: 3}
@@ -39067,7 +39070,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

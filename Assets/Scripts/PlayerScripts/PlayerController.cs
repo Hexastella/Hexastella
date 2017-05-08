@@ -9,7 +9,7 @@ public class PlayerController : Unit {
 	public float jumpheight;
     public float deathPos;
 
-    public Transform camPivot;
+    //public Transform camPivot;
 
 	private float raycastDistance = 1f;
 
@@ -25,12 +25,14 @@ public class PlayerController : Unit {
             SceneManager.LoadScene("GameScene");
         }
 
+        //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
 
 		// We normalized our input vetor to make sure our input value always has a length of 1
 		Vector3 input = new Vector3(horizontalInput, 0, verticalInput).normalized * speed;
-
+        
+        //JUMP
 		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
 			input.y = jumpheight;
@@ -48,7 +50,8 @@ public class PlayerController : Unit {
 		// Rotates a vector from local to world space
 		rb.velocity = transform.TransformVector(input);
 
-        if(verticalInput > 0.1f || verticalInput < -0.1f)
+        //RUN animation
+        if(verticalInput > 0.1f)
         {
             anim.SetBool("Run", true);
         }
@@ -57,16 +60,13 @@ public class PlayerController : Unit {
             anim.SetBool("Run", false);
         }
 
-        //anim.SetFloat("HorizontalSpeed", horizontalInput);
-        //anim.SetFloat("VerticalSpeed", verticalInput);
-
-        //make the player dash when they press F
+        //DASH
         if (Input.GetKeyDown(KeyCode.F))
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -40f);
         }
 
-        //Dodge roll
+        //DODGE ROLL
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             //anim.SetTrigger("Roll");
@@ -77,7 +77,7 @@ public class PlayerController : Unit {
 
     bool IsGrounded()
 	{
-		// Shooting a raycast down will return true if hit something
+		//Shoot raycast downw
 		return Physics.Raycast(transform.position, Vector3.down, raycastDistance);
 	}
 }

@@ -4,28 +4,43 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour {
 
-    private float raycastDistance = 2f;
+    public int attackDamage;
+    public float raycastDistance = 10f;
 
-	void Start()
+    private float yOffset = 8f;
+    private EnemyHealth mainEnemyHealth;
+    private GameObject enemy;
+    private Vector3 playerOrigin;
+    private Vector3 hitPoint;
+
+    private void Awake()
     {
-		
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        mainEnemyHealth = enemy.GetComponent<EnemyHealth>();
+    }
+
+    void Start()
+    {
+        playerOrigin = transform.position;
+        playerOrigin.y += yOffset;
 	}
 
 	void Update()
     {
-		if(playerRange())
-        {
-            print("Attack!");
-        }
+        Debug.DrawRay(playerOrigin, Vector3.back * raycastDistance);
 
         if (Input.GetMouseButtonDown(0) && playerRange())
         {
             print("Swish swosh");
+            if(mainEnemyHealth.currentHealth > 0)
+            {
+                mainEnemyHealth.TakeDamage(attackDamage, hitPoint);
+            }
         }
 	}
 
     bool playerRange()
     {
-        return Physics.Raycast(transform.position, Vector3.left, raycastDistance);
+        return Physics.Raycast(playerOrigin, Vector3.back, raycastDistance);
     }
 }
