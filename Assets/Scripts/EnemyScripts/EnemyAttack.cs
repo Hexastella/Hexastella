@@ -164,8 +164,8 @@
 
 			Walk,
 			WaveAttack,
-			Idle,
-			LaserAttack
+			LaserAttack,
+			PlayerDie
 
 		}
 
@@ -203,13 +203,13 @@
 				break;
 
 
-			case State.Idle:
-				StartCoroutine (OnIdle ());
+			case State.LaserAttack:
+				StartCoroutine (OnLaserAttack ());
 				break; 
 
 
-			case State.LaserAttack:
-				StartCoroutine (OnLaserAttack());
+			case State.PlayerDie:
+				StartCoroutine (OnPlayerDie());
 				break;
 
 
@@ -224,9 +224,9 @@
 		IEnumerator OnWalk ()
 		{
 
-			print("STARTING STATE ONE");
+		print("STARTING STATE ONE (Particle Attack)");
 		
-			while (mainPlayerHealth.currentHealth >= 250) 
+			while (mainPlayerHealth.currentHealth >= 300) 
 
 			{
 
@@ -248,7 +248,7 @@
 			yield return null;
 
 			// Switching States Message
-			print ("Switching States");
+			print ("Switching to Wave Attack State");
 		}
 
 
@@ -261,24 +261,18 @@
 			print ("YOU ARE IN STATE TWO");
 		
 			// While the player health is above 80 use the wave attack 
-		       
-	
 
-			   while (mainPlayerHealth.currentHealth >= 50) {
+			   while (mainPlayerHealth.currentHealth >= 100) {
 				// Wait for defined amount of time before executing next Wave Attack
 		
-
-			gunLine.material = new Material (Shader.Find("Particles/Additive"));
-			// Set the new colors here
-			gunLine.SetColors (WaveAttackChangedColor, WaveAttackChangedColor2);
 				yield return new WaitForSeconds(1f);
 				// Call the Wave Attack Functio every set amount of time predefined
 				// Set the gunLine renderer to true so that when the boss shoots it will show the lineRenderer.
+
 			    gunLine.enabled = true; 
+			   
 
-		        // Change Line Renderer Colors 
-
-		
+			    // Use the wave attack 
 			    WaveAttack (); 
 
 			    //DestroyImmediate(gunLine); 
@@ -288,8 +282,7 @@
 				// Print a message for debugging only
 				print ("Wave Attack Used");
 		
-				// Must yield return null
-				yield return null;
+				
 			   // Wait for 0.1 seconds before setting the LineRenderer to false
 			   yield return new WaitForSeconds (0.1f);
 			// Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
@@ -297,58 +290,93 @@
 
 
 
-
-			//DestroyImmediate(gunLine); 
-
-
 			}
 
-			// Switching States Message
-			print ("Switching States");
-			//Switch the state to STATE THREE
-			SetState(State.Idle);
+
+		//Switch the state to STATE THREE
+		SetState(State.LaserAttack);
+		    // Must yield return null
+		    yield return null;
+		    // Switching States Message
+		    print ("Switching To Laser Attack");
+			
 		
 			// Pauses the execution of this method for one frame
 			//yield return null;
 
 		}
 
-		// STATE THREE 
-		IEnumerator OnIdle() 
+
+	    
+
+		// LASER ATTACK STATE
+		IEnumerator OnLaserAttack() 
 		{
 
 			print("YOU ARE IN STATE THREE");
-			// Must yield return null
-			// Pauses the execution of this method for one frame
-			yield return null;
 
-			// Switching States Message
-			print ("Switching States");
 
 			// Switch the scene to the lose state when you lose the game
 			// When the player has a health of the set value then play the lose game music and switch the scene
-			if (mainPlayerHealth.currentHealth >=0) {
+			if (mainPlayerHealth.currentHealth >=5) {
 
-				// Play a audio file by name in the unity Resources folder.
-				// This will only work if its in the Resources folder.
-				AudioSource audio = gameObject.AddComponent<AudioSource >();
-				audio.PlayOneShot((AudioClip)Resources.Load("MainMenuMusic"));
+			yield return new WaitForSeconds(1f);
+			// Call the Wave Attack Functio every set amount of time predefined
+			// Set the gunLine renderer to true so that when the boss shoots it will show the lineRenderer.
 
-				// Wait for ten seconds before switching the scene to the menu
-				yield return new WaitForSeconds (10f);
+			gunLine.enabled = true; 
 
-				SceneManager.LoadScene ("MainScene");
+			// Change Line Renderer Colors 
+
+			LaserAttack (); 
+
+			//DestroyImmediate(gunLine); 
+			// Play linked audio
+			Audio.Play ();
+
+			// Print a message for debugging only
+			print ("Wave Attack Used");
+
+
+			// Wait for 0.1 seconds before setting the LineRenderer to false
+			yield return new WaitForSeconds (0.1f);
+			// Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
+			gunLine.enabled = false; 
+
+			print ("Switching to lose state");
+
 
 			}
+
+		// Must yield return null
+		yield return null;
+
+		SetState (State.PlayerDie); 
 
 		
 		}
 
 
-		// STATE FOUR
-		IEnumerator OnLaserAttack()
+		// PLAYER DIE STATE
+		IEnumerator OnPlayerDie()
 		{
+	
 
+		print ("Player Die State");
+		if (mainPlayerHealth.currentHealth >=0) {
+
+			// Play a audio file by name in the unity Resources folder.
+			// This will only work if its in the Resources folder.
+			AudioSource audio = gameObject.AddComponent<AudioSource >();
+			audio.PlayOneShot((AudioClip)Resources.Load("MainMenuMusic"));
+
+			// Wait for ten seconds before switching the scene to the menu
+			yield return new WaitForSeconds (10f);
+
+			SceneManager.LoadScene ("MainScene");
+
+		}
+			
 
 			// Must yield return null
 			// Pauses the execution of this method for one frame
@@ -415,6 +443,61 @@
 				gunLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
 			}
 		}
+
+
+
+
+	 // Laser Attack
+	void LaserAttack ()
+	{
+		//timer = 0f;
+		// Do damange to the player via the WaveAttack from the player health script.
+		// Play the audio sound of the attack 
+		Audio.Play ();
+
+
+		gunLine.material = new Material (Shader.Find("Particles/Additive"));
+		// Set the new colors here
+		gunLine.SetColors (WaveAttackChangedColor,WaveAttackChangedColor2);
+
+		// Particle effects
+		gunParticles.Stop ();
+		gunParticles.Play ();
+		gunLine.enabled = true;
+		gunLine.SetPosition (0, transform.position);
+		shootRay.origin = transform.position;
+		shootRay.direction = transform.forward;
+
+
+
+		if(Physics.Raycast (shootRay, out shootHit, projectileRange, PlayerDamageZone))
+		{
+
+			PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
+
+
+
+
+			// If the playerHealth is higher than 0 then damage the player using the particle effect
+			if(playerHealth.currentHealth > 0)
+			{
+				//  Player will take damage when hit by the LineRenderer. 
+				mainPlayerHealth.TakeDamage (DamageToGive);
+				// Print message for debugging only
+
+				print("PLAYER GOT HIT");
+
+			}
+			gunLine.SetPosition (1, shootHit.point);
+		}
+		else
+		{
+			gunLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
+		}
+	}
+
+
+
 
 
 
