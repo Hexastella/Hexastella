@@ -237,7 +237,7 @@
 				yield return new WaitForSeconds(1f);
 
 				// Particle System Method
-				OnParticleCollision (gameObject);
+				ParticleCollision (gameObject);
 
 				print ("Particle Attack used");
 
@@ -347,15 +347,13 @@
 			laserAttackLine.enabled = false; 
 
 
-			print("Laser Attack Line");
 
 			if (mainPlayerHealth.currentHealth <= 0) {
 
 
-				print ("Reached this line");
 				//Switch the state to STATE THREE
 				SetState (State.PlayerDie);
-				print ("SWITCHED STATE");
+				print ("Switching toe");
 				// Must yield return null
 				yield return null;
 
@@ -516,7 +514,7 @@
 
 		// Particle Collider System
 		// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
-		void OnParticleCollision(GameObject other) {
+		void ParticleCollision(GameObject other) {
 			Rigidbody body = other.GetComponent<Rigidbody>();
 
 			if (body) {
@@ -533,18 +531,9 @@
 
 
 
-
-
-
 		}
 
 
-		// Laser Attack Method
-		void LaserAttackMethod()
-		{
-
-
-		}
 
 		// Particle Attack Method
 		void ParticleAttackMethod() 
