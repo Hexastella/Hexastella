@@ -31,3 +31,9 @@ sysinfo.txt
 
 Assets/Art/Hexagons.prefab
 Assets/Scenes/GameScene.unity
+
+ProjectSettings/ProjectSettings.asset
+
+ProjectSettings/GraphicsSettings.asset
+
+ProjectSettings/EditorBuildSettings.asset
