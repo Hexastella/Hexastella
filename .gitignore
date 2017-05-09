@@ -37,3 +37,7 @@ ProjectSettings/ProjectSettings.asset
 ProjectSettings/GraphicsSettings.asset
 
 ProjectSettings/EditorBuildSettings.asset
+
+Assets/Scenes/GameScene/LightingData.asset.meta
+
+Assets/Scenes/GameScene/ReflectionProbe-0.exr.meta
