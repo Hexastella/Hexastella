@@ -236,22 +236,18 @@
 
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 5";
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 4";
+
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 3";
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 2";
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 1";
 
 
@@ -278,7 +274,10 @@
 			// Define the current state and output the result on the GUI
 			currentStateText.text = "Particle Attack Used";
 
+		
+
 			}
+
 
 			// Switch the state to the Wave Attack State
 			SetState(State.WaveAttack);
@@ -292,6 +291,7 @@
 		currentStateText.text = "Switching to Wave Attack State";
 
 
+
 		}
 
 
@@ -300,11 +300,20 @@
 		IEnumerator OnWaveAttack()
 		{
 
+		// CoolDown Timer Countdown
+		currentStateText.text = "Cooldown Ends in 3";
+		yield return new WaitForSeconds (1f);
+		currentStateText.text = "Cooldown Ends in 2";
+		yield return new WaitForSeconds(1f); 
+		currentStateText.text = "Cooldown Ends in 1";
+		yield return new WaitForSeconds(1f);  
+
+
 			// State Two Code Here
 			print ("YOU ARE IN STATE TWO");
 
 		// Define the current state and output the result on the GUI
-		currentStateText.text = "You are in State Two";
+		currentStateText.text = "Boss is  State Two";
 
 		//print (mainPlayerHealth);
 		
@@ -369,6 +378,15 @@
 		IEnumerator OnLaserAttack()
 	{
 
+
+		// CoolDown Timer Countdown
+		currentStateText.text = "Cooldown Ends in 3";
+		yield return new WaitForSeconds (1f);
+		currentStateText.text = "Cooldown Ends in 2";
+		yield return new WaitForSeconds(1f); 
+		currentStateText.text = "Cooldown Ends in 1";
+		yield return new WaitForSeconds(1f);  
+
 		//print ("YOU ARE IN STATE THREE");
 
 		// Define the current state and output the result on the GUI
@@ -411,7 +429,7 @@
 			currentStateText.text = "You are almost dead";
 
 			// Define the current state and output the result on the GUI
-			currentStateText.text = "Switching to Final State";
+			//currentStateText.text = "Switching to Final State";
 
 			if (mainPlayerHealth.currentHealth <= 0) {
 
