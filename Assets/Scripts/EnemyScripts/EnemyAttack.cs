@@ -511,7 +511,6 @@
 
 
 
-
 		// Particle Collider System
 		// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
 		void ParticleCollision(GameObject other) {
@@ -534,13 +533,6 @@
 		}
 
 
-
-		// Particle Attack Method
-		void ParticleAttackMethod() 
-		{
-
-
-		}
 
 		// Activate Hexagon Method
 		void ActivateHexagonMethod() 
