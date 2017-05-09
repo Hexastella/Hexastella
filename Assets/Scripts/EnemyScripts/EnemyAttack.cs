@@ -171,6 +171,8 @@
 		private enum State
 		{
 
+
+		    ActivateHexagon,
 			Walk,
 			WaveAttack,
 			LaserAttack,
@@ -182,7 +184,7 @@
 		void Start()
 		{
 			// Set Initial State here
-			SetState (State.Walk);
+			SetState (State.ActivateHexagon);
 
 		}
 
@@ -201,6 +203,11 @@
 			switch (currentState) {
 
 
+	 
+		    case State.ActivateHexagon: 
+			      StartCoroutine (OnActivateHexagon());
+			      break; 
+		     
 			case State.Walk:
 				StartCoroutine (OnWalk ());
 				break;
@@ -226,6 +233,21 @@
 
 		}
 
+	   // Activate Hexagon State 
+	    IEnumerator OnActivateHexagon () {
+
+		currentStateText.text = "Finding Hexagon";
+		yield return new WaitForSeconds(1f);  
+		currentStateText.text = "No supported Hexagon found";
+		yield return new WaitForSeconds(1f);  
+		currentStateText.text = "Switching to Particle Attack";
+
+		// Switch the state to the Walk State (Particle Attack)
+		SetState(State.Walk);
+
+		yield return null;
+
+	    }
 		// STATE ONE
 		// Initial State where the AI will walk towards the player 
 		IEnumerator OnWalk ()
