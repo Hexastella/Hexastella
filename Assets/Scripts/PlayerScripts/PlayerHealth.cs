@@ -51,7 +51,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= amount;
 
-        healthSlider.value = currentHealth;
+     //   healthSlider.value = currentHealth;
 
         playerAudio.Play ();
 
@@ -73,6 +73,6 @@ public class PlayerHealth : MonoBehaviour
 
 //        playerMovement.enabled = false;
 
-        GameScene.gameOver = true;
+        GameScreen.playerLose = true;
     }
 }
