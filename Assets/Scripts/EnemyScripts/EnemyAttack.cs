@@ -43,7 +43,7 @@
 		internal float shootTime = 1.0f;
 		internal float timePeriod = 1.0f; 
 
-		float timer;
+		//float timer;
 		AudioSource Audio;
 
 		// Attack Damage 
@@ -146,7 +146,7 @@
 		// Attack player function 
 		void Attack ()
 		{
-			timer = 0f;
+		//	timer = 0f;
 
 			if(mainPlayerHealth.currentHealth > 0)
 			{
