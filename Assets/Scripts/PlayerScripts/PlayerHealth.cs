@@ -71,8 +71,8 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.clip = deathClip;
         playerAudio.Play ();
 
-//        playerMovement.enabled = false;
+        playerMovement.enabled = false;
 
-        GameScene.gameOver = true;
+        GameScreen.playerLose = true;
     }
 }

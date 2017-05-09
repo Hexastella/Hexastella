@@ -66,9 +66,9 @@ public class EnemyHealth : MonoBehaviour
 
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
-		//Destroy (gameObject, 2f);
+        //Destroy (gameObject, 2f);
 
-
+        GameScreen.playerWin = true;
 
     }
 

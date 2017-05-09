@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainScene : MonoBehaviour {
+public class MainScene : UIScreen {
 
 	public void OnStartGame()
     {
-        SceneManager.LoadScene("GameScene");
+        UIManager.instance.Show<GameScreen>();
+        SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);
     }
 
     public void OnQuitGame()
