@@ -17,7 +17,9 @@ public class GameScreen : UIScreen
         if (playerWin)
         {
             UIManager.instance.Show<WinScreen>();
-        }else if (playerLose)
+        } 
+        
+        if (playerLose)
         {
             UIManager.instance.Show<LoseScreen>();
         }

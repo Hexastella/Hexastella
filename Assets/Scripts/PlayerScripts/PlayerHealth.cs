@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using UnityEngine.SceneManagement;
-
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -66,12 +64,12 @@ public class PlayerHealth : MonoBehaviour
     {
         isDead = true;
 
-        anim.SetTrigger ("Die");
+        //anim.SetTrigger ("Die");
 
         playerAudio.clip = deathClip;
         playerAudio.Play ();
 
-//        playerMovement.enabled = false;
+        //playerMovement.enabled = false;
 
         GameScreen.playerLose = true;
     }

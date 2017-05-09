@@ -58,6 +58,8 @@ public class EnemyHealth : MonoBehaviour
 
     void Death ()
     {
+        GameScreen.playerWin = true;
+
         isDead = true;
 
         capsuleCollider.isTrigger = true;
@@ -67,9 +69,6 @@ public class EnemyHealth : MonoBehaviour
         enemyAudio.clip = deathClip;
         enemyAudio.Play ();
         //Destroy (gameObject, 2f);
-
-        GameScreen.playerWin = true;
-
     }
 
 

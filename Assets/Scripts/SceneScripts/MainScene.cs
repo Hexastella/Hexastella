@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainScene : UIScreen {
 
-	public void OnStartGame()
+    private void Update()
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void OnStartGame()
     {
         UIManager.instance.Show<GameScreen>();
         SceneManager.LoadScene("GameScene", LoadSceneMode.Additive);

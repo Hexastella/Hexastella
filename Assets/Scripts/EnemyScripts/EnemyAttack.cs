@@ -287,7 +287,7 @@
 				
 			   // Wait for 0.1 seconds before setting the LineRenderer to false
 			   yield return new WaitForSeconds (0.1f);
-			// Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
+			   // Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
 			   waveAttackLine.enabled = false; 
 
 

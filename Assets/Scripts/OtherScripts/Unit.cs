@@ -12,14 +12,4 @@ public class Unit : MonoBehaviour {
 		rb = GetComponent<Rigidbody>();
 		anim = GetComponentInChildren<Animator>(); 
 	}
-
-    void TakeDamage()
-    {
-
-    }
-
-    void Die()
-    {
-
-    }
 }

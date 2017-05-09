@@ -6,6 +6,7 @@ TagManager:
   tags:
   - teleport
   - Enemy
+  - Block
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - 
   - 
   - Shootable
-  - 
-  - 
+  - Block
+  - Camera
   - 
   - 
   - 
