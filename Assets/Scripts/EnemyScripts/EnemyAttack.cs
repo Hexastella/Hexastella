@@ -8,11 +8,16 @@
 	using System.Collections;
 	using System.Collections.Generic;
 	using UnityEngine.SceneManagement;
+     using UnityEngine.UI;
 
 	public class EnemyAttack : MonoBehaviour
 	{
 		public float timeBetweenAttacks = 0.0f;
 		//public int attackDamage = 10;
+
+
+	     // Display the currrent state of the EnemyAttack AI
+	    public Text currentStateText; 
 
 
 	     // Line Renderer Wave Attack Colors 
@@ -80,6 +85,8 @@
 		void Awake ()
 		{
 			player = GameObject.FindGameObjectWithTag ("Player");
+
+		     currentStateText.text = "";
 
 			// Make sure that the layer of the main player in unity is set to the defined value below otherwise the player will not recieve damage
 			PlayerDamageZone = LayerMask.GetMask ("Shootable");
@@ -180,8 +187,6 @@
 		}
 
 
-
-
 		private State currentState;
 
 
@@ -226,21 +231,52 @@
 		IEnumerator OnWalk ()
 		{
 
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Starting State One";
+
+
+		yield return new WaitForSeconds(1f);  
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Starting in 5";
+
+		yield return new WaitForSeconds(1f);  
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Starting in 4";
+		yield return new WaitForSeconds(1f);  
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Starting in 3";
+
+		yield return new WaitForSeconds(1f);  
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Starting in 2";
+
+		yield return new WaitForSeconds(1f);  
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Starting in 1";
+
+
+
 		print("STARTING STATE ONE (Particle Attack)");
 		
 			while (mainPlayerHealth.currentHealth >= 300) 
 
 			{
-
-				print("YOU ARE IN STATE ONE");
+			
+				print("BOSS IS IN STATE ONE");
 				// Wait for 1 second before starting next attack
 				yield return new WaitForSeconds(1f);
+
+			currentStateText.text = "Boss is in State One";
+
 
 				// Particle System Method
 				ParticleCollision (gameObject);
 
-				print ("Particle Attack used");
+				//print ("Particle Attack used");
 
+
+			// Define the current state and output the result on the GUI
+			currentStateText.text = "Particle Attack Used";
 
 			}
 
@@ -250,7 +286,12 @@
 			yield return null;
 
 			// Switching States Message
-			print ("Switching to Wave Attack State");
+			//print ("Switching to Wave Attack State");
+
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Switching to Wave Attack State";
+
+
 		}
 
 
@@ -261,6 +302,11 @@
 
 			// State Two Code Here
 			print ("YOU ARE IN STATE TWO");
+
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "You are in State Two";
+
+		//print (mainPlayerHealth);
 		
 			// While the player health is higher than 150 use the wave attack 
 
@@ -282,8 +328,12 @@
 				Audio.Play ();
 
 				// Print a message for debugging only
-				print ("Wave Attack Used");
-		
+				//print ("Wave Attack Used");
+
+
+			// Define the current state and output the result on the GUI
+			currentStateText.text = "Wave Attack Used";
+
 				
 			   // Wait for 0.1 seconds before setting the LineRenderer to false
 			   yield return new WaitForSeconds (0.1f);
@@ -294,12 +344,17 @@
 			} // END WAVE ATTACK
 
 
+
+
 		//Switch the state to STATE THREE
 		SetState(State.LaserAttack);
 		    // Must yield return null
 		    yield return null;
 		    // Switching States Message
-		    print ("Switching To Laser Attack");
+		    //print ("Switching To Laser Attack");
+
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Switching to Laser Attack";
 			
 		
 			// Pauses the execution of this method for one frame
@@ -314,7 +369,10 @@
 		IEnumerator OnLaserAttack()
 	{
 
-		print ("YOU ARE IN STATE THREE");
+		//print ("YOU ARE IN STATE THREE");
+
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Boss is in State Three";
 
 
 		// Switch the scene to the lose state when you lose the game
@@ -338,7 +396,10 @@
 			Audio.Play ();
 
 			// Print a message for debugging only
-			print ("Laser Attack Used");
+			//print ("Laser Attack Used");
+
+			// Define the current state and output the result on the GUI
+			currentStateText.text = "Laser Attack Used";
 
 
 			// Wait for 0.1 seconds before setting the LineRenderer to false
@@ -346,14 +407,20 @@
 			// Set the gunLine line renderer to false so that when the boss shoots will it will not be visible. 
 			laserAttackLine.enabled = false; 
 
+			// Define the current state and output the result on the GUI
+			currentStateText.text = "You are almost dead";
 
+			// Define the current state and output the result on the GUI
+			currentStateText.text = "Switching to Final State";
 
 			if (mainPlayerHealth.currentHealth <= 0) {
 
 
 				//Switch the state to STATE THREE
 				SetState (State.PlayerDie);
-				print ("Switching toe");
+
+       
+
 				// Must yield return null
 				yield return null;
 
@@ -369,8 +436,10 @@
 		IEnumerator OnPlayerDie()
 		{
 	     
+		// Define the current state and output the result on the GUI
+		currentStateText.text = "Player Die State";
 
-		print ("Player Die State");
+		//print ("Player Die State");
 		if (mainPlayerHealth.currentHealth == 0) {
 
 			// Play a audio file by name in the unity Resources folder.
