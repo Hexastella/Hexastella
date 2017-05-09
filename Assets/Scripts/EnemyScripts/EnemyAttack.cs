@@ -173,6 +173,7 @@
 
 
 		    ActivateHexagon,
+		    UseHexagon,
 			Walk,
 			WaveAttack,
 			LaserAttack,
@@ -207,6 +208,12 @@
 		    case State.ActivateHexagon: 
 			      StartCoroutine (OnActivateHexagon());
 			      break; 
+
+
+		   // case State.UseHexagon:
+			   //  StartCoroutine (OnUseHexagon ());
+			   //  break;
+
 		     
 			case State.Walk:
 				StartCoroutine (OnWalk ());
@@ -248,6 +255,18 @@
 		yield return null;
 
 	    }
+
+
+	//IEnumerator OnUseHexagon() {
+
+
+		//currentStateText
+
+
+	//}
+
+
+
 		// STATE ONE
 		// Initial State where the AI will walk towards the player 
 		IEnumerator OnWalk ()
@@ -520,7 +539,7 @@
 			Audio.Play ();
 
 
-		waveAttackLine.material = new Material (Shader.Find("Particles/Additive"));
+		//waveAttackLine.material = new Material (Shader.Find("Particles/Additive"));
 		// Set the new colors here
 		waveAttackLine.SetColors (waveAttackColor, waveAttackColor2);
 		 
