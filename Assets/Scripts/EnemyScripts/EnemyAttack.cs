@@ -150,7 +150,7 @@
 
 
 		// Kill Player function
-		void killPlayer() {
+		void KillPlayer() {
 
 			if(mainPlayerHealth.currentHealth > 0)
 			{

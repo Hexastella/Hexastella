@@ -8,8 +8,7 @@ public class PlayerController : Unit {
 	public float speed;
 	public float jumpheight;
     public float deathPos;
-
-    //public Transform camPivot;
+    public Transform enemy;
 
 	private float raycastDistance = 1f;
 
@@ -25,11 +24,14 @@ public class PlayerController : Unit {
             SceneManager.LoadScene("GameScene");
         }
 
+        //player is always looking at the enemy
+        transform.LookAt(enemy);
+
         //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
 
-		// We normalized our input vetor to make sure our input value always has a length of 1
+		//Normalize our input vector
 		Vector3 input = new Vector3(horizontalInput, 0, verticalInput).normalized * speed;
         
         //JUMP

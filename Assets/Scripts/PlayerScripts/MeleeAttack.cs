@@ -26,7 +26,7 @@ public class MeleeAttack : MonoBehaviour {
 
         Debug.DrawRay(playerOrigin, Vector3.back * raycastDistance);
 
-        if (Input.GetMouseButtonDown(0) && playerRange())
+        if (Input.GetMouseButtonDown(0) && PlayerRange())
         {
             print("Swish swosh");
             if(mainEnemyHealth.currentHealth > 0)
@@ -36,7 +36,7 @@ public class MeleeAttack : MonoBehaviour {
         }
 	}
 
-    bool playerRange()
+    bool PlayerRange()
     {
         return Physics.Raycast(playerOrigin, Vector3.back, raycastDistance);
     }
