@@ -7507,8 +7507,8 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 5, y: 5, z: 5}
+  - {x: 0, y: 0, z: 5}
   m_Parameters:
     serializedVersion: 2
     widthMultiplier: 10
@@ -7621,7 +7621,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     minMaxState: 0
@@ -7665,7 +7665,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -433890261
+  randomSeed: 1071838844
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7812,7 +7812,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
     startSize:
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7851,7 +7851,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -7890,7 +7890,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       minMaxState: 0
-      scalar: 1
+      scalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -8045,8 +8045,8 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 0
-    size3D: 0
+    maxNumParticles: 50
+    size3D: 1
     rotation3D: 0
     gravityModifier:
       minMaxState: 0
@@ -9838,12 +9838,12 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     minKillSpeed: 0
-    maxKillSpeed: 10000
+    maxKillSpeed: 10
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
-    maxCollisionShapes: 256
+      m_Bits: 256
+    maxCollisionShapes: 1
     quality: 0
     voxelSize: 0.5
     collisionMessages: 1
@@ -16877,6 +16877,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 719a8bae26a824f8cba0f9f82a0c0381, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 719a8bae26a824f8cba0f9f82a0c0381, type: 3}
   m_IsPrefabParent: 0
@@ -20065,11 +20069,19 @@ Prefab:
       objectReference: {fileID: 2100000, guid: 6524f19813c9f43338b84323596a7eb4, type: 2}
     - target: {fileID: 19800000, guid: e839afeebc7f642788cb0f95db32df8e, type: 2}
       propertyPath: playOnAwake
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19800000, guid: e839afeebc7f642788cb0f95db32df8e, type: 2}
       propertyPath: randomSeed
+      value: -1923686425
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e839afeebc7f642788cb0f95db32df8e, type: 2}
+      propertyPath: InitialModule.maxNumParticles
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800000, guid: e839afeebc7f642788cb0f95db32df8e, type: 2}
+      propertyPath: lengthInSec
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e839afeebc7f642788cb0f95db32df8e, type: 2}
