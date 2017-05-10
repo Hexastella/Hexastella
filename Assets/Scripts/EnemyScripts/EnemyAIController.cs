@@ -373,7 +373,7 @@ public class EnemyAIController : MonoBehaviour
 
 
 			// State Two Code Here
-			print ("YOU ARE IN STATE TWO");
+			print ("BOSS IS IN STATE TWO");
 
 		// Define the current state and output the result on the GUI
 		currentStateText.text = "Boss is in State Two";
@@ -549,140 +549,6 @@ public class EnemyAIController : MonoBehaviour
 
 
 		// This is the wave attack method that will be used for the enemy wave attack as one of the enemys AI features.
-		// Wave Attack 
-
-	/*	void WaveAttack ()
-		{
-			//timer = 0f;
-			// Do damange to the player via the WaveAttack from the player health script.
-			// Play the audio sound of the attack 
-			Audio.Play ();
-
-
-		//waveAttackLine.material = new Material (Shader.Find("Particles/Additive"));
-		// Set the new colors here
-		waveAttackLine.SetColors (waveAttackColor, waveAttackColor2);
-		 
-			// Particle effects
-			gunParticles.Stop ();
-			gunParticles.Play ();
-			waveAttackLine.enabled = true;
-
-		  // waveAttackLine.SetWidth (50, 50); 
-
-			waveAttackLine.SetPosition (0, transform.position);
-			shootRay.origin = transform.position;
-			shootRay.direction = transform.forward;
-
-
-
-			if(Physics.Raycast (shootRay, out shootHit, projectileRange, PlayerDamageZone))
-			{
-				
-				PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
-
-				// If the playerHealth is higher than 0 then damage the player using the particle effect
-				if(playerHealth.currentHealth > 0)
-				{
-					//  Player will take damage when hit by the LineRenderer. 
-					mainPlayerHealth.TakeDamage (DamageToGive);
-					// Print message for debugging only
-
-					print("PLAYER GOT HIT");
-
-				}
-				waveAttackLine.SetPosition (1, shootHit.point);
-			}
-			else
-			{
-				waveAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
-			}
-		} /*/
-
-
-
-
-	 // Laser Attack
-	void LaserAttack ()
-	{
-		//timer = 0f;
-		// Do damange to the player via the WaveAttack from the player health script.
-		// Play the audio sound of the attack 
-		Audio.Play ();
-
-
-		laserAttackLine.material = new Material (Shader.Find("Particles/Additive"));
-		// Set the new colors here
-		laserAttackLine.SetColors (laserAttackColor,laserAttackColor2);
-
-		  laserAttackLine.SetWidth (1, 1); 
-
-
-		// Particle effects
-		gunParticles.Stop ();
-		gunParticles.Play ();
-
-		laserAttackLine.enabled = true;
-		laserAttackLine.SetPosition (0, transform.position);
-		shootRay.origin = transform.position;
-		shootRay.direction = transform.forward;
-
-
-
-		if(Physics.Raycast (shootRay, out shootHit, projectileRange, PlayerDamageZone))
-		{
-
-			PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
-
-
-
-
-			// If the playerHealth is higher than 0 then damage the player using the particle effect
-			if(playerHealth.currentHealth > 0)
-			{
-				//  Player will take damage when hit by the LineRenderer. 
-				mainPlayerHealth.TakeDamage (DamageToGive);
-				// Print message for debugging only
-
-				print("PLAYER GOT HIT");
-
-			}
-			laserAttackLine.SetPosition (1, shootHit.point);
-		}
-		else
-		{
-			laserAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
-		}
-	}
-
-
-
-	// Moved to EnemyParticleAttack Script
-
-		// Particle Collider System
-		// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
-	//	void ParticleCollision(GameObject other) {
-			//Rigidbody body = other.GetComponent<Rigidbody>();
-
-			//if (body) {
-			//	Vector3 direction = other.transform.position - transform.position;
-				//direction = direction.normalized;
-
-
-			//	gunParticles.Play ();
-			//	mainPlayerHealth.TakeDamage (DamageToGive);
-				//gunParticles.Stop ();
-
-
-			//}
-
-
-
-		//}
-
-	// Moved to EnemyParticleAttack Script
-
-
 
 		// Activate Hexagon Method
 		void ActivateHexagonMethod() 
