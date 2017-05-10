@@ -15,14 +15,13 @@ public class EnemyAIController : MonoBehaviour
 		public float timeBetweenAttacks = 0.0f;
 		//public int attackDamage = 10;
 
+	    // Display the currrent state of the EnemyAttack AI
+	    public Text currentStateText; 
 
-	     // Display the currrent state of the EnemyAttack AI
-	     public Text currentStateText; 
 
-
-	     // Line Renderer Wave Attack Colors 
-	     internal Color waveAttackColor = Color.white;
-	     internal Color waveAttackColor2 = Color.red; 
+	    // Line Renderer Wave Attack Colors 
+	    internal Color waveAttackColor = Color.white;
+	    internal Color waveAttackColor2 = Color.red; 
 	   
 
 		// Laser Attack Line Renderer Wave Attack Colors
@@ -33,7 +32,6 @@ public class EnemyAIController : MonoBehaviour
 		internal Vector3 lineStartPos; 
 		internal Vector3 lineEndPos; 
 
-		// From EnemyShooting Script NEW
 
 	    internal int DamageToGive = 40;
 		internal float timeBetweenBullets = 0.15f;
@@ -50,40 +48,41 @@ public class EnemyAIController : MonoBehaviour
 		internal PlayerHealth mainPlayerHealth;
 
 
-	// Define enemyParticleAttack from the enemyParticleAttack Script
+	    // Define enemyParticleAttack from the enemyParticleAttack Script
 	    internal  EnemyParticleAttack enemyParticleAttack;
-
 
 
 	    // Define enemyWaveAttack from the enemyWaveAttack Script
 	    internal EnemyWaveAttack enemyWaveAttack;
 
+	    // Define enemyLaserAttack from the enemyLaserAttack script
+	    internal EnemyLaserAttack enemyLaserAttack;
+
 
 		public int attackDamage = 10;
-	     EnemyAIController enemyAttack;
+	    EnemyAIController enemyAttack;
 
 		// LineRenderer which is used for the wave attack 
 	    internal LineRenderer waveAttackLine;
 	    public  ParticleSystem gunParticles;
 
 	    // LineRenderer which is used for the laser attack
-	    LineRenderer laserAttackLine;
-
+	    internal LineRenderer laserAttackLine;
 	    internal Ray shootRay = new Ray(); 
 
 		// Create raycast shootHit
 		internal RaycastHit shootHit;
 
 		// Define the playerDamageZone
-	     internal int PlayerDamageZone;
+	    internal int PlayerDamageZone;
+
 		// Used for the particle system when the enemy shoots
 		ParticleSystem enemyParticles; 
 		LineRenderer Line;
+
 		// The amount of time the effects display
 		float effectsDisplayTime = 0.2f;
 
-
-		// From EnemyShooting Script NEW 
 
 		Animator anim;
 		GameObject player;
@@ -101,24 +100,26 @@ public class EnemyAIController : MonoBehaviour
 
 			// Make sure that the layer of the main player in unity is set to the defined value below otherwise the player will not recieve damage
 			PlayerDamageZone = LayerMask.GetMask ("Shootable");
-
+		    // Get the Particle System Component
 			gunParticles = GetComponent<ParticleSystem> ();
 		    // Wave Attack Line
 			waveAttackLine = GetComponent <LineRenderer> ();
 		    // Laser Attack Line 
-		    laserAttackLine = GetComponent<LineRenderer> (); 
+		    laserAttackLine = GetComponent<LineRenderer> ();
+		    // Get the AudioSource component
 			Audio = GetComponent<AudioSource> ();
-
+		    // Get the component of the PlayerHealth Script
 			mainPlayerHealth = player.GetComponent <PlayerHealth> ();
+		   // Get the component of the EnemyHealth Script
 			enemyHealth = GetComponent<EnemyHealth>();
+		    // Get the Animator Component
 			anim = GetComponent <Animator> ();
-
+		    // Get the component of the EnemyParticleAttack Script
 		   enemyParticleAttack = GetComponent <EnemyParticleAttack>();
-
-		    //enemyParticleAttack = GetComponent<EnemyParticleAttack> (); 
-
-		     // Get the component of the EnemyWaveAttack Script
-		     enemyWaveAttack = GetComponent<EnemyWaveAttack> ();
+		    // Get the component of the EnemyWaveAttack Script
+		   enemyWaveAttack = GetComponent<EnemyWaveAttack> ();
+		   // Get the component of the EnemyLaserAttack Script
+		   enemyLaserAttack = GetComponent<EnemyLaserAttack> ();
 
 
 		}
@@ -326,7 +327,7 @@ public class EnemyAIController : MonoBehaviour
 			currentStateText.text = "Boss is in State One";
 
 
-				// Particle System Method
+			// Particle System Method
             
 			//ParticleCollision (gameObject);
 
@@ -334,14 +335,9 @@ public class EnemyAIController : MonoBehaviour
 			mainPlayerHealth.TakeDamage (DamageToGive);
 			gunParticles.Stop ();
 
-
-				//print ("Particle Attack used");
-
-
 			// Define the current state and output the result on the GUI
 			currentStateText.text = "Particle Attack Used";
 
-		
 
 			}
 
@@ -401,14 +397,9 @@ public class EnemyAIController : MonoBehaviour
 			    // Use the wave attack from the EnemyWaveAttack Script
 			   enemyWaveAttack.WaveAttack (); 
 
-
-
 			    //DestroyImmediate(gunLine); 
 				// Play linked audio
 				Audio.Play ();
-
-				// Print a message for debugging only
-				//print ("Wave Attack Used");
 
 
 			// Define the current state and output the result on the GUI
@@ -425,8 +416,7 @@ public class EnemyAIController : MonoBehaviour
 
 
 
-
-		//Switch the state to STATE THREE
+		//Switch the state to the Laser Attack State
 		SetState(State.LaserAttack);
 		    // Must yield return null
 		    yield return null;
@@ -449,7 +439,6 @@ public class EnemyAIController : MonoBehaviour
 		IEnumerator OnLaserAttack()
 	{
 
-
 		// CoolDown Timer Countdown
 		currentStateText.text = "Cooldown Ends in 3";
 		yield return new WaitForSeconds (1f);
@@ -458,7 +447,6 @@ public class EnemyAIController : MonoBehaviour
 		currentStateText.text = "Cooldown Ends in 1";
 		yield return new WaitForSeconds(1f);  
 
-		//print ("YOU ARE IN STATE THREE");
 
 		// Define the current state and output the result on the GUI
 		currentStateText.text = "Boss is in State Three";
@@ -466,7 +454,6 @@ public class EnemyAIController : MonoBehaviour
 
 		// Switch the scene to the lose state when you lose the game
 		// When the player has a health of the set value then play the lose game music and switch the scene
-
 		// When the player health is higher than 0 
 		while (mainPlayerHealth.currentHealth > 0) {
 
@@ -478,7 +465,9 @@ public class EnemyAIController : MonoBehaviour
 
 			// Change Line Renderer Colors 
 
-			LaserAttack (); 
+			enemyLaserAttack.LaserAttack ();
+
+			//LaserAttack (); 
 
 			//DestroyImmediate(gunLine); 
 			// Play linked audio
