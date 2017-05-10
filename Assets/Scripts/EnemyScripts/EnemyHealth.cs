@@ -58,7 +58,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Death ()
     {
-        GameScreen.playerWin = true;
+        GameManager.instance.playerWin = true;
 
         isDead = true;
 

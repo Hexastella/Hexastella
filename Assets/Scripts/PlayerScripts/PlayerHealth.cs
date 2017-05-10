@@ -62,6 +62,8 @@ public class PlayerHealth : MonoBehaviour
 
     void Death ()
     {
+        GameManager.instance.playerLose = true;
+
         isDead = true;
 
         //anim.SetTrigger ("Die");
@@ -70,7 +72,5 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.Play ();
 
         //playerMovement.enabled = false;
-
-        GameScreen.playerLose = true;
     }
 }

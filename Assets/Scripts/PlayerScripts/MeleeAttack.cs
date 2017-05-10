@@ -5,12 +5,8 @@ using UnityEngine;
 public class MeleeAttack : MonoBehaviour {
 
     public int attackDamage = 20;
-    public float raycastDistance = 10f;
-
-    private float yOffset = 8f;
     private EnemyHealth mainEnemyHealth;
     private GameObject enemy;
-    private Vector3 playerOrigin;
     private Vector3 hitPoint;
 
     private void Awake()
@@ -21,23 +17,19 @@ public class MeleeAttack : MonoBehaviour {
 
 	void Update()
     {
-        playerOrigin = transform.position;
-        playerOrigin.y += yOffset;
+        
+	}
 
-        Debug.DrawRay(playerOrigin, Vector3.back * raycastDistance);
-
-        if (Input.GetMouseButtonDown(0) && PlayerRange())
+    private void OnTriggerStay(Collider other)
+    {
+        if (Input.GetMouseButtonDown(0) && other.GetComponent<EnemyHealth>())
         {
             print("Swish swosh");
-            if(mainEnemyHealth.currentHealth > 0)
+
+            if (mainEnemyHealth.currentHealth > 0)
             {
                 mainEnemyHealth.TakeDamage(attackDamage, hitPoint);
             }
         }
-	}
-
-    bool PlayerRange()
-    {
-        return Physics.Raycast(playerOrigin, Vector3.back, raycastDistance);
     }
 }

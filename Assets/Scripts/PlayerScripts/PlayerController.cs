@@ -8,7 +8,9 @@ public class PlayerController : Unit {
 	public float speed;
 	public float jumpheight;
     public float deathPos;
+    public float dashForce;
     public Transform enemy;
+    public Transform cam;
 
 	private float raycastDistance = 1f;
 
@@ -24,8 +26,12 @@ public class PlayerController : Unit {
             SceneManager.LoadScene("GameScene");
         }
 
-        //player is always looking at the enemy
+        //player is looking at and rotating around the enemy
         transform.LookAt(enemy);
+
+        float enemyDis = Vector3.Distance(enemy.position, transform.position);
+        float camDis = Vector3.Distance(cam.position, transform.position);
+        //print("Enemy Distance: " + enemyDis + " Camera Distance: " + camDis);
 
         //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
@@ -40,8 +46,7 @@ public class PlayerController : Unit {
 			input.y = jumpheight;
 			//anim.SetTrigger("Jump");
 		} else
-
-		{
+        {
 			//make sure that the Y value of input is not 0
 			input.y = rb.velocity.y;
 		}
@@ -62,10 +67,18 @@ public class PlayerController : Unit {
             anim.SetBool("Run", false);
         }
 
+        //SLASH animation
+        if (Input.GetMouseButtonDown(0))
+        {
+            anim.SetTrigger("Slash");
+        }
+
         //DASH
         if (Input.GetKeyDown(KeyCode.F))
         {
-            transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -40f);
+            print("boom");
+            //rb.AddRelativeForce(Vector3.back, ForceMode.Force);
+            //transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -40f);
         }
 
         //DODGE ROLL

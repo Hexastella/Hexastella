@@ -5,7 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
-	void Start ()
+    public static GameManager instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindObjectOfType<GameManager>();
+            }
+            return _instance;
+        }
+    }
+
+    private static GameManager _instance;
+
+    public bool playerWin;
+    public bool playerLose;
+
+    void Start ()
     {
 		
 	}

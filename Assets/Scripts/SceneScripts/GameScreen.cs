@@ -6,20 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameScreen : UIScreen
 {
 
-    public static bool playerWin;
-    public static bool playerLose;
-
     void Update()
     {
         //Lock the cursor
         Cursor.lockState = CursorLockMode.Locked;
 
-        if (playerWin)
+        if (GameManager.instance.playerWin)
         {
             UIManager.instance.Show<WinScreen>();
         } 
         
-        if (playerLose)
+        if (GameManager.instance.playerLose)
         {
             UIManager.instance.Show<LoseScreen>();
         }
