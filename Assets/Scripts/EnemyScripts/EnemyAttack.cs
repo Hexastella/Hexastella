@@ -48,12 +48,16 @@
 
 		// Attack Damage 
 		PlayerHealth mainPlayerHealth;
+
+	    EnemyParticleAttack enemyParticleAttack;
+
+
 		public int attackDamage = 10;
 		EnemyAttack enemyAttack;
 
 		// LineRenderer which is used for the wave attack 
 		LineRenderer waveAttackLine;
-	    ParticleSystem gunParticles;
+	    public ParticleSystem gunParticles;
 
 	    // LineRenderer which is used for the laser attack
 	    LineRenderer laserAttackLine;
@@ -101,6 +105,10 @@
 			mainPlayerHealth = player.GetComponent <PlayerHealth> ();
 			enemyHealth = GetComponent<EnemyHealth>();
 			anim = GetComponent <Animator> ();
+
+
+		     enemyParticleAttack = GetComponent<EnemyParticleAttack>();
+
 		}
 
 
@@ -307,7 +315,13 @@
 
 
 				// Particle System Method
-				ParticleCollision (gameObject);
+            
+			//ParticleCollision (gameObject);
+
+			gunParticles.Play ();
+			mainPlayerHealth.TakeDamage (DamageToGive);
+			gunParticles.Stop ();
+
 
 				//print ("Particle Attack used");
 
@@ -354,7 +368,7 @@
 			print ("YOU ARE IN STATE TWO");
 
 		// Define the current state and output the result on the GUI
-		currentStateText.text = "Boss is  State Two";
+		currentStateText.text = "Boss is in State Two";
 
 		//print (mainPlayerHealth);
 		
@@ -637,28 +651,30 @@
 
 
 
-
+	// Moved to EnemyParticleAttack Script
 
 		// Particle Collider System
 		// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
-		void ParticleCollision(GameObject other) {
-			Rigidbody body = other.GetComponent<Rigidbody>();
+	//	void ParticleCollision(GameObject other) {
+			//Rigidbody body = other.GetComponent<Rigidbody>();
 
-			if (body) {
-				Vector3 direction = other.transform.position - transform.position;
-				direction = direction.normalized;
-
-
-				gunParticles.Play ();
-				mainPlayerHealth.TakeDamage (DamageToGive);
-				gunParticles.Stop ();
+			//if (body) {
+			//	Vector3 direction = other.transform.position - transform.position;
+				//direction = direction.normalized;
 
 
-			}
+			//	gunParticles.Play ();
+			//	mainPlayerHealth.TakeDamage (DamageToGive);
+				//gunParticles.Stop ();
+
+
+			//}
 
 
 
-		}
+		//}
+
+	// Moved to EnemyParticleAttack Script
 
 
 
