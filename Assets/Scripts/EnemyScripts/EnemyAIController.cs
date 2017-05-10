@@ -10,7 +10,7 @@
 	using UnityEngine.SceneManagement;
      using UnityEngine.UI;
 
-	public class EnemyAttack : MonoBehaviour
+public class EnemyAIController : MonoBehaviour
 	{
 		public float timeBetweenAttacks = 0.0f;
 		//public int attackDamage = 10;
@@ -53,7 +53,7 @@
 
 
 		public int attackDamage = 10;
-		EnemyAttack enemyAttack;
+	     EnemyAIController enemyAttack;
 
 		// LineRenderer which is used for the wave attack 
 		LineRenderer waveAttackLine;
