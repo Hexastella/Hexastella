@@ -17,7 +17,7 @@ public class EnemyAIController : MonoBehaviour
 
 
 	     // Display the currrent state of the EnemyAttack AI
-	    public Text currentStateText; 
+	     public Text currentStateText; 
 
 
 	     // Line Renderer Wave Attack Colors 
@@ -44,31 +44,38 @@ public class EnemyAIController : MonoBehaviour
 		internal float timePeriod = 1.0f; 
 
 		//float timer;
-		AudioSource Audio;
+		internal AudioSource Audio;
 
 		// Attack Damage 
-		PlayerHealth mainPlayerHealth;
+		internal PlayerHealth mainPlayerHealth;
 
-	    EnemyParticleAttack enemyParticleAttack;
+
+	// Define enemyParticleAttack from the enemyParticleAttack Script
+	    internal  EnemyParticleAttack enemyParticleAttack;
+
+
+
+	    // Define enemyWaveAttack from the enemyWaveAttack Script
+	    internal EnemyWaveAttack enemyWaveAttack;
 
 
 		public int attackDamage = 10;
 	     EnemyAIController enemyAttack;
 
 		// LineRenderer which is used for the wave attack 
-		LineRenderer waveAttackLine;
-	    public ParticleSystem gunParticles;
+	    internal LineRenderer waveAttackLine;
+	    public  ParticleSystem gunParticles;
 
 	    // LineRenderer which is used for the laser attack
 	    LineRenderer laserAttackLine;
 
-		Ray shootRay = new Ray(); 
+	    internal Ray shootRay = new Ray(); 
 
 		// Create raycast shootHit
-		RaycastHit shootHit;
+		internal RaycastHit shootHit;
 
 		// Define the playerDamageZone
-		int PlayerDamageZone;
+	     internal int PlayerDamageZone;
 		// Used for the particle system when the enemy shoots
 		ParticleSystem enemyParticles; 
 		LineRenderer Line;
@@ -106,8 +113,13 @@ public class EnemyAIController : MonoBehaviour
 			enemyHealth = GetComponent<EnemyHealth>();
 			anim = GetComponent <Animator> ();
 
+		   enemyParticleAttack = GetComponent <EnemyParticleAttack>();
 
-		     enemyParticleAttack = GetComponent<EnemyParticleAttack>();
+		    //enemyParticleAttack = GetComponent<EnemyParticleAttack> (); 
+
+		     // Get the component of the EnemyWaveAttack Script
+		     enemyWaveAttack = GetComponent<EnemyWaveAttack> ();
+
 
 		}
 
@@ -384,8 +396,12 @@ public class EnemyAIController : MonoBehaviour
 			    waveAttackLine.enabled = true; 
 			   
 
-			    // Use the wave attack 
-			    WaveAttack (); 
+
+			     // WaveAttack (); 
+			    // Use the wave attack from the EnemyWaveAttack Script
+			   enemyWaveAttack.WaveAttack (); 
+
+
 
 			    //DestroyImmediate(gunLine); 
 				// Play linked audio
@@ -545,7 +561,8 @@ public class EnemyAIController : MonoBehaviour
 
 		// This is the wave attack method that will be used for the enemy wave attack as one of the enemys AI features.
 		// Wave Attack 
-		void WaveAttack ()
+
+	/*	void WaveAttack ()
 		{
 			//timer = 0f;
 			// Do damange to the player via the WaveAttack from the player health script.
@@ -591,7 +608,7 @@ public class EnemyAIController : MonoBehaviour
 			{
 				waveAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
 			}
-		}
+		} /*/
 
 
 
