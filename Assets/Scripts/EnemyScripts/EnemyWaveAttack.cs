@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyWaveAttack : MonoBehaviour {
+public class EnemyWaveAttack : EnemyAIController {
 
 
 
@@ -28,7 +28,7 @@ public class EnemyWaveAttack : MonoBehaviour {
 		//timer = 0f;
 		// Do damange to the player via the WaveAttack from the player health script.
 		// Play the audio sound of the attack 
-		//enemyAIController.Audio.Play ();
+		enemyAIController.Audio.Play ();
 	
 
 		//waveAttackLine.material = new Material (Shader.Find("Particles/Additive"));
@@ -38,19 +38,16 @@ public class EnemyWaveAttack : MonoBehaviour {
 
 		// Particle effects
 		enemyAIController.gunParticles.Stop ();
-
-
 		enemyAIController.gunParticles.Play ();
-
+        // Enable the Wave Attack Line Renderer
 		enemyAIController.waveAttackLine.enabled = true;
-
-		// waveAttackLine.SetWidth (50, 50); 
-
+		// Set the width of the Wave Attack Line
+		enemyAIController.waveAttackLine.SetWidth (50, 50); 
+		//  Set the position of thw Wave Attack Line
 		enemyAIController.waveAttackLine.SetPosition (0, transform.position);
-	
+	     
 		enemyAIController.shootRay.origin = transform.position;
 		enemyAIController.shootRay.direction = transform.forward;
-
 
 
 		if (Physics.Raycast (enemyAIController.shootRay, out enemyAIController.shootHit, enemyAIController.projectileRange, enemyAIController.PlayerDamageZone)) {
@@ -61,9 +58,9 @@ public class EnemyWaveAttack : MonoBehaviour {
 			if (playerHealth.currentHealth > 0) {
 				//  Player will take damage when hit by the LineRenderer. 
 				enemyAIController.mainPlayerHealth.TakeDamage (enemyAIController.DamageToGive);
-				// Print message for debugging only
 
-				print ("PLAYER GOT HIT");
+				// Print message for debugging only
+				print ("Wave Attack Used");
 
 			}
 			enemyAIController.waveAttackLine.SetPosition (1, enemyAIController.shootHit.point);
