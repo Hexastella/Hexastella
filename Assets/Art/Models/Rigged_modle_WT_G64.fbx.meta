@@ -1,0 +1,275 @@
+fileFormatVersion: 2
+guid: f164934f359b4344385b48dde35a2a64
+timeCreated: 1494533250
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Controller_Left_Foot
+    100002: Controller_Left_Foot_Ankle
+    100004: Controller_Left_Foot_Ball
+    100006: Controller_Left_Foot_Toe
+    100008: Controller_Right_Foot
+    100010: Controller_Right_Foot_Ankle
+    100012: Controller_Right_Foot_Ball
+    100014: Controller_Right_Foot_Toe
+    100016: G65
+    100018: Head
+    100020: HIPS
+    100022: Left_Arm_Controller
+    100024: Left_Arm_Elbow
+    100026: Left_Arm_IK
+    100028: Left_Arm_IK 1
+    100030: Left_Arm_Shoulder
+    100032: Left_Arm_Wrist
+    100034: Left_Collar_Bone
+    100036: Left_Ear
+    100038: Left_Ear_End
+    100040: Left_Ellbow_Controller
+    100042: Left_Foor_IK_Ball
+    100044: Left_Foot_end
+    100046: Left_Foot_IK
+    100048: Left_Foot_IK_Toes
+    100050: Left_Foot_Middle
+    100052: Left_Index_1
+    100054: Left_Index_2
+    100056: Left_Index_3
+    100058: Left_Index_End
+    100060: Left_Leg_Ankle
+    100062: Left_Leg_Knee
+    100064: Left_Leg_Upper
+    100066: Left_Middle_1
+    100068: Left_Middle_2
+    100070: Left_Middle_3
+    100072: Left_Middle_End
+    100074: Left_Pinky_1
+    100076: Left_Pinky_2
+    100078: Left_Pinky_3
+    100080: Left_Pinky_End
+    100082: Left_Ring_1
+    100084: Left_Ring_2
+    100086: Left_Ring_3
+    100088: Left_Ring_End
+    100090: Left_Thigh
+    100092: Left_Thigh_end
+    100094: Left_Thump_1
+    100096: Left_Thump_2
+    100098: Left_Thump_3
+    100100: Left_Thump_End
+    100102: Neck
+    100104: //RootNode
+    100106: Right_Arm_Controller
+    100108: Right_Arm_Elbow
+    100110: Right_Arm_IK
+    100112: Right_Arm_Shoulder
+    100114: Right_Arm_Wrist
+    100116: Right_Collar_Bone
+    100118: Right_Ear
+    100120: Right_Ear_End
+    100122: Right_Ellbow_Controller
+    100124: Right_Foot_end
+    100126: Right_Foot_IK
+    100128: Right_Foot_IK_Ball
+    100130: Right_Foot_IK_Toes
+    100132: Right_Foot_Middle
+    100134: Right_Index_1
+    100136: Right_Index_2
+    100138: Right_Index_3
+    100140: Right_Index_End
+    100142: Right_Leg_Ankle
+    100144: Right_Leg_Knee
+    100146: Right_Leg_Upper
+    100148: Right_Middle_1
+    100150: Right_Middle_2
+    100152: Right_Middle_3
+    100154: Right_Middle_End
+    100156: Right_Pinky_1
+    100158: Right_Pinky_2
+    100160: Right_Pinky_3
+    100162: Right_Pinky_End
+    100164: Right_Ring_1
+    100166: Right_Ring_2
+    100168: Right_Ring_3
+    100170: Right_Ring_End
+    100172: Right_Thigh
+    100174: Right_Thigh_end
+    100176: Right_Thump_1
+    100178: Right_Thump_2
+    100180: Right_Thump_3
+    100182: Right_Thump_End
+    100184: Root
+    100186: Shoulder_Controller
+    100188: Spine1
+    100190: Spine2
+    100192: Spine3
+    100194: Spine4
+    400000: Controller_Left_Foot
+    400002: Controller_Left_Foot_Ankle
+    400004: Controller_Left_Foot_Ball
+    400006: Controller_Left_Foot_Toe
+    400008: Controller_Right_Foot
+    400010: Controller_Right_Foot_Ankle
+    400012: Controller_Right_Foot_Ball
+    400014: Controller_Right_Foot_Toe
+    400016: G65
+    400018: Head
+    400020: HIPS
+    400022: Left_Arm_Controller
+    400024: Left_Arm_Elbow
+    400026: Left_Arm_IK
+    400028: Left_Arm_IK 1
+    400030: Left_Arm_Shoulder
+    400032: Left_Arm_Wrist
+    400034: Left_Collar_Bone
+    400036: Left_Ear
+    400038: Left_Ear_End
+    400040: Left_Ellbow_Controller
+    400042: Left_Foor_IK_Ball
+    400044: Left_Foot_end
+    400046: Left_Foot_IK
+    400048: Left_Foot_IK_Toes
+    400050: Left_Foot_Middle
+    400052: Left_Index_1
+    400054: Left_Index_2
+    400056: Left_Index_3
+    400058: Left_Index_End
+    400060: Left_Leg_Ankle
+    400062: Left_Leg_Knee
+    400064: Left_Leg_Upper
+    400066: Left_Middle_1
+    400068: Left_Middle_2
+    400070: Left_Middle_3
+    400072: Left_Middle_End
+    400074: Left_Pinky_1
+    400076: Left_Pinky_2
+    400078: Left_Pinky_3
+    400080: Left_Pinky_End
+    400082: Left_Ring_1
+    400084: Left_Ring_2
+    400086: Left_Ring_3
+    400088: Left_Ring_End
+    400090: Left_Thigh
+    400092: Left_Thigh_end
+    400094: Left_Thump_1
+    400096: Left_Thump_2
+    400098: Left_Thump_3
+    400100: Left_Thump_End
+    400102: Neck
+    400104: //RootNode
+    400106: Right_Arm_Controller
+    400108: Right_Arm_Elbow
+    400110: Right_Arm_IK
+    400112: Right_Arm_Shoulder
+    400114: Right_Arm_Wrist
+    400116: Right_Collar_Bone
+    400118: Right_Ear
+    400120: Right_Ear_End
+    400122: Right_Ellbow_Controller
+    400124: Right_Foot_end
+    400126: Right_Foot_IK
+    400128: Right_Foot_IK_Ball
+    400130: Right_Foot_IK_Toes
+    400132: Right_Foot_Middle
+    400134: Right_Index_1
+    400136: Right_Index_2
+    400138: Right_Index_3
+    400140: Right_Index_End
+    400142: Right_Leg_Ankle
+    400144: Right_Leg_Knee
+    400146: Right_Leg_Upper
+    400148: Right_Middle_1
+    400150: Right_Middle_2
+    400152: Right_Middle_3
+    400154: Right_Middle_End
+    400156: Right_Pinky_1
+    400158: Right_Pinky_2
+    400160: Right_Pinky_3
+    400162: Right_Pinky_End
+    400164: Right_Ring_1
+    400166: Right_Ring_2
+    400168: Right_Ring_3
+    400170: Right_Ring_End
+    400172: Right_Thigh
+    400174: Right_Thigh_end
+    400176: Right_Thump_1
+    400178: Right_Thump_2
+    400180: Right_Thump_3
+    400182: Right_Thump_End
+    400184: Root
+    400186: Shoulder_Controller
+    400188: Spine1
+    400190: Spine2
+    400192: Spine3
+    400194: Spine4
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

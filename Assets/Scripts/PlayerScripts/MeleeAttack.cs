@@ -24,10 +24,9 @@ public class MeleeAttack : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0) && other.GetComponent<EnemyHealth>())
         {
-            print("Swish swosh");
-
             if (mainEnemyHealth.currentHealth > 0)
             {
+                Debug.Log("Enemy hit!");
                 mainEnemyHealth.TakeDamage(attackDamage, hitPoint);
             }
         }

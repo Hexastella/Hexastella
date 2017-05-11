@@ -29,10 +29,6 @@ public class PlayerController : Unit {
         //player is looking at and rotating around the enemy
         transform.LookAt(enemy);
 
-        float enemyDis = Vector3.Distance(enemy.position, transform.position);
-        float camDis = Vector3.Distance(cam.position, transform.position);
-        //print("Enemy Distance: " + enemyDis + " Camera Distance: " + camDis);
-
         //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
@@ -84,7 +80,7 @@ public class PlayerController : Unit {
         //DODGE ROLL
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            //anim.SetTrigger("Roll");
+            anim.SetTrigger("Roll");
             transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -20f);
         }
 
