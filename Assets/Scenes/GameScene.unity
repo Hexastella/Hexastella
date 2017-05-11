@@ -7505,7 +7505,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805911790}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d944acb2090d042b3b29153fbddd1f6e, type: 3}
   m_Name: 
@@ -7532,7 +7532,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805911790}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8faa055070a55481f80143620212af9b, type: 3}
   m_Name: 
@@ -7540,6 +7540,7 @@ MonoBehaviour:
   timeBetweenAttacks: 0.2
   currentStateText: {fileID: 610563266}
   attackDamage: 12
+  gunParticles: {fileID: 0}
 --- !u!195 &805911797
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7790,7 +7791,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: 1480624275
+  randomSeed: -1841443525
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -13839,7 +13840,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1178176861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -18067,6 +18068,7 @@ MonoBehaviour:
   speed: 50
   jumpheight: 20
   deathPos: -30
+  dashForce: 0
   enemy: {fileID: 805911792}
   cam: {fileID: 6442725}
 --- !u!114 &1722090269
