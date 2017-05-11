@@ -354,7 +354,6 @@ public class EnemyAIController : MonoBehaviour
 		currentStateText.text = "Switching to Wave Attack State";
 
 
-
 		}
 
 
@@ -412,7 +411,7 @@ public class EnemyAIController : MonoBehaviour
 			   waveAttackLine.enabled = false; 
 
 
-			} // END WAVE ATTACK
+			} // END WAVE ATTACK STATE
 
 
 
@@ -433,8 +432,7 @@ public class EnemyAIController : MonoBehaviour
 		}
 
 
-	    
-
+	   
 		// LASER ATTACK STATE
 		IEnumerator OnLaserAttack()
 	{
@@ -467,7 +465,6 @@ public class EnemyAIController : MonoBehaviour
 
 			enemyLaserAttack.LaserAttack ();
 
-			//LaserAttack (); 
 
 			//DestroyImmediate(gunLine); 
 			// Play linked audio

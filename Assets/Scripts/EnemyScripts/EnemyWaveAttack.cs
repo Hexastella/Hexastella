@@ -7,8 +7,7 @@ public class EnemyWaveAttack : MonoBehaviour {
 
 
 	//This is the wave attack method that will be used for the enemy wave attack as one of the enemys AI features.
-		// Wave Attack 
-
+    // Wave Attack 
 
 	// Define the EnemyAIController Script
 	EnemyAIController enemyAIController;

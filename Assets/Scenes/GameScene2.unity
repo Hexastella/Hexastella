@@ -7375,9 +7375,15 @@ GameObject:
   - component: {fileID: 805911804}
   - component: {fileID: 805911794}
   - component: {fileID: 805911795}
-  - component: {fileID: 805911796}
   - component: {fileID: 805911797}
+<<<<<<< Updated upstream:Assets/Scenes/GameScene.unity
   - component: {fileID: 805911805}
+=======
+  - component: {fileID: 805911796}
+  - component: {fileID: 805911805}
+  - component: {fileID: 805911806}
+  - component: {fileID: 805911807}
+>>>>>>> Stashed changes:Assets/Scenes/GameScene2.unity
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
@@ -7537,10 +7543,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8faa055070a55481f80143620212af9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream:Assets/Scenes/GameScene.unity
   timeBetweenAttacks: 0.2
   currentStateText: {fileID: 610563266}
   attackDamage: 12
   gunParticles: {fileID: 0}
+=======
+  timeBetweenAttacks: 0
+  currentStateText: {fileID: 838203946}
+  attackDamage: 10
+  gunParticles: {fileID: 19800000, guid: aacdf38da431549df9b48ea9c64335ba, type: 2}
+>>>>>>> Stashed changes:Assets/Scenes/GameScene2.unity
 --- !u!195 &805911797
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -7791,7 +7804,11 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
+<<<<<<< Updated upstream:Assets/Scenes/GameScene.unity
   randomSeed: -1841443525
+=======
+  randomSeed: -730553339
+>>>>>>> Stashed changes:Assets/Scenes/GameScene2.unity
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10740,18 +10757,53 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
+<<<<<<< Updated upstream:Assets/Scenes/GameScene.unity
 --- !u!65 &805911805
 BoxCollider:
+=======
+--- !u!114 &805911805
+MonoBehaviour:
+>>>>>>> Stashed changes:Assets/Scenes/GameScene2.unity
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 805911790}
+<<<<<<< Updated upstream:Assets/Scenes/GameScene.unity
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.8475921, y: 1.3, z: 0.5650611}
   m_Center: {x: 0, y: 0.51, z: 0}
+=======
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a09b115fbd1bb446580ddc5d59f06ff6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &805911806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 805911790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8afe7eb56f1542a5a0f1dbcbde50525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &805911807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 805911790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73cf94057e2434e99adb063f8fe49c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes:Assets/Scenes/GameScene2.unity
 --- !u!1 &806156756
 GameObject:
   m_ObjectHideFlags: 0
@@ -13069,6 +13121,7 @@ GameObject:
   - component: {fileID: 1064574184}
   - component: {fileID: 1064574183}
   - component: {fileID: 1064574186}
+  - component: {fileID: 1064574187}
   m_Layer: 0
   m_Name: Shield Polygon 02
   m_TagString: Untagged
@@ -13076,11 +13129,10 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1064574182
-Transform:
+--- !u!224 &1064574182
+RectTransform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4335961341700742, guid: 0156a9b60b51245be83390e4201cdf67,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1064574181}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
@@ -13090,6 +13142,11 @@ Transform:
   m_Father: {fileID: 276111692}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1064574183
 Animator:
   serializedVersion: 3
@@ -13161,6 +13218,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.22913417, y: 0.045893535, z: 0.19843605}
   m_Center: {x: 0, y: 0.022946771, z: -0.0000000037252903}
+--- !u!222 &1064574187
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1064574181}
 --- !u!1 &1075684633
 GameObject:
   m_ObjectHideFlags: 0
@@ -14396,6 +14459,7 @@ GameObject:
   - component: {fileID: 1219951033}
   - component: {fileID: 1219951032}
   - component: {fileID: 1219951035}
+  - component: {fileID: 1219951036}
   m_Layer: 0
   m_Name: Neutral Polygon Wall 07 (2)
   m_TagString: Untagged
@@ -14403,20 +14467,24 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1219951031
-Transform:
+--- !u!224 &1219951031
+RectTransform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4128563134005978, guid: 0156a9b60b51245be83390e4201cdf67,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1219951030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17078948, y: -0.0043336563, z: 1.0713159}
+  m_LocalPosition: {x: 0, y: 0, z: 1.0713159}
   m_LocalScale: {x: 1, y: 4.1666665, z: 1}
   m_Children: []
   m_Father: {fileID: 276111692}
   m_RootOrder: 117
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.17078948, y: -0.0043336563}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1219951032
 Animator:
   serializedVersion: 3
@@ -14488,6 +14556,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.22913417, y: 0.04589354, z: 0.19843605}
   m_Center: {x: 0, y: 0.022946773, z: -0.0000000037252903}
+--- !u!222 &1219951036
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1219951030}
 --- !u!1 &1231135811
 GameObject:
   m_ObjectHideFlags: 0
