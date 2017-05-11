@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
-    public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
+    public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
 
 
     Animator anim;
@@ -33,7 +33,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(damaged)
         {
-            damageImage.color = flashColour;
+            damageImage.color = flashColor;
         }
         else
         {

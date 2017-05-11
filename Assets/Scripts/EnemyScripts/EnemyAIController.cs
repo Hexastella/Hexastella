@@ -221,11 +221,8 @@ public class EnemyAIController : MonoBehaviour
 			StopAllCoroutines ();
 			currentState = newState;
 
-
 			switch (currentState) {
 
-
-	 
 		    case State.ActivateHexagon: 
 			      StartCoroutine (OnActivateHexagon());
 			      break; 
@@ -264,6 +261,8 @@ public class EnemyAIController : MonoBehaviour
 	   // Activate Hexagon State 
 	    IEnumerator OnActivateHexagon () {
 
+
+		yield return new WaitForSeconds (1f);
 		currentStateText.text = "Finding Hexagon";
 		yield return new WaitForSeconds(1f);  
 		currentStateText.text = "No supported Hexagon found";
@@ -328,12 +327,9 @@ public class EnemyAIController : MonoBehaviour
 
 
 			// Particle System Method
-            
-			//ParticleCollision (gameObject);
 
-			gunParticles.Play ();
-			mainPlayerHealth.TakeDamage (DamageToGive);
-			gunParticles.Stop ();
+			enemyParticleAttack.ParticleCollision (player);
+
 
 			// Define the current state and output the result on the GUI
 			currentStateText.text = "Particle Attack Used";
@@ -475,7 +471,6 @@ public class EnemyAIController : MonoBehaviour
 
 			// Define the current state and output the result on the GUI
 			currentStateText.text = "Laser Attack Used";
-
 
 			// Wait for 0.1 seconds before setting the LineRenderer to false
 			yield return new WaitForSeconds (0.1f);
