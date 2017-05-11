@@ -10,19 +10,18 @@
 	using UnityEngine.SceneManagement;
      using UnityEngine.UI;
 
-	public class EnemyAttack : MonoBehaviour
+public class EnemyAIController : MonoBehaviour
 	{
 		public float timeBetweenAttacks = 0.0f;
 		//public int attackDamage = 10;
 
-
-	     // Display the currrent state of the EnemyAttack AI
+	    // Display the currrent state of the EnemyAttack AI
 	    public Text currentStateText; 
 
 
-	     // Line Renderer Wave Attack Colors 
-	     internal Color waveAttackColor = Color.white;
-	     internal Color waveAttackColor2 = Color.red; 
+	    // Line Renderer Wave Attack Colors 
+	    internal Color waveAttackColor = Color.white;
+	    internal Color waveAttackColor2 = Color.red; 
 	   
 
 		// Laser Attack Line Renderer Wave Attack Colors
@@ -33,7 +32,6 @@
 		internal Vector3 lineStartPos; 
 		internal Vector3 lineEndPos; 
 
-		// From EnemyShooting Script NEW
 
 	    internal int DamageToGive = 40;
 		internal float timeBetweenBullets = 0.15f;
@@ -43,36 +41,48 @@
 		internal float shootTime = 1.0f;
 		internal float timePeriod = 1.0f; 
 
-		float timer;
-		AudioSource Audio;
+		//float timer;
+		internal AudioSource Audio;
 
 		// Attack Damage 
-		PlayerHealth mainPlayerHealth;
+		internal PlayerHealth mainPlayerHealth;
+
+
+	    // Define enemyParticleAttack from the enemyParticleAttack Script
+	    internal  EnemyParticleAttack enemyParticleAttack;
+
+
+	    // Define enemyWaveAttack from the enemyWaveAttack Script
+	    internal EnemyWaveAttack enemyWaveAttack;
+
+	    // Define enemyLaserAttack from the enemyLaserAttack script
+	    internal EnemyLaserAttack enemyLaserAttack;
+
+
 		public int attackDamage = 10;
-		EnemyAttack enemyAttack;
+	    EnemyAIController enemyAttack;
 
 		// LineRenderer which is used for the wave attack 
-		LineRenderer waveAttackLine;
-	    ParticleSystem gunParticles;
+	    internal LineRenderer waveAttackLine;
+	    public  ParticleSystem gunParticles;
 
 	    // LineRenderer which is used for the laser attack
-	    LineRenderer laserAttackLine;
-
-		Ray shootRay = new Ray(); 
+	    internal LineRenderer laserAttackLine;
+	    internal Ray shootRay = new Ray(); 
 
 		// Create raycast shootHit
-		RaycastHit shootHit;
+		internal RaycastHit shootHit;
 
 		// Define the playerDamageZone
-		int PlayerDamageZone;
+	    internal int PlayerDamageZone;
+
 		// Used for the particle system when the enemy shoots
 		ParticleSystem enemyParticles; 
 		LineRenderer Line;
+
 		// The amount of time the effects display
 		float effectsDisplayTime = 0.2f;
 
-
-		// From EnemyShooting Script NEW 
 
 		Animator anim;
 		GameObject player;
@@ -90,17 +100,28 @@
 
 			// Make sure that the layer of the main player in unity is set to the defined value below otherwise the player will not recieve damage
 			PlayerDamageZone = LayerMask.GetMask ("Shootable");
-
+		    // Get the Particle System Component
 			gunParticles = GetComponent<ParticleSystem> ();
 		    // Wave Attack Line
 			waveAttackLine = GetComponent <LineRenderer> ();
 		    // Laser Attack Line 
-		    laserAttackLine = GetComponent<LineRenderer> (); 
+		    laserAttackLine = GetComponent<LineRenderer> ();
+		    // Get the AudioSource component
 			Audio = GetComponent<AudioSource> ();
-
+		    // Get the component of the PlayerHealth Script
 			mainPlayerHealth = player.GetComponent <PlayerHealth> ();
+		   // Get the component of the EnemyHealth Script
 			enemyHealth = GetComponent<EnemyHealth>();
+		    // Get the Animator Component
 			anim = GetComponent <Animator> ();
+		    // Get the component of the EnemyParticleAttack Script
+		   enemyParticleAttack = GetComponent <EnemyParticleAttack>();
+		    // Get the component of the EnemyWaveAttack Script
+		   enemyWaveAttack = GetComponent<EnemyWaveAttack> ();
+		   // Get the component of the EnemyLaserAttack Script
+		   enemyLaserAttack = GetComponent<EnemyLaserAttack> ();
+
+
 		}
 
 
@@ -146,7 +167,7 @@
 		// Attack player function 
 		void Attack ()
 		{
-			timer = 0f;
+		//	timer = 0f;
 
 			if(mainPlayerHealth.currentHealth > 0)
 			{
@@ -171,6 +192,9 @@
 		private enum State
 		{
 
+
+		    ActivateHexagon,
+		    UseHexagon,
 			Walk,
 			WaveAttack,
 			LaserAttack,
@@ -182,7 +206,7 @@
 		void Start()
 		{
 			// Set Initial State here
-			SetState (State.Walk);
+			SetState (State.ActivateHexagon);
 
 		}
 
@@ -201,6 +225,17 @@
 			switch (currentState) {
 
 
+	 
+		    case State.ActivateHexagon: 
+			      StartCoroutine (OnActivateHexagon());
+			      break; 
+
+
+		   // case State.UseHexagon:
+			   //  StartCoroutine (OnUseHexagon ());
+			   //  break;
+
+		     
 			case State.Walk:
 				StartCoroutine (OnWalk ());
 				break;
@@ -226,6 +261,33 @@
 
 		}
 
+	   // Activate Hexagon State 
+	    IEnumerator OnActivateHexagon () {
+
+		currentStateText.text = "Finding Hexagon";
+		yield return new WaitForSeconds(1f);  
+		currentStateText.text = "No supported Hexagon found";
+		yield return new WaitForSeconds(1f);  
+		currentStateText.text = "Switching to Particle Attack";
+
+		// Switch the state to the Walk State (Particle Attack)
+		SetState(State.Walk);
+
+		yield return null;
+
+	    }
+
+
+	//IEnumerator OnUseHexagon() {
+
+
+		//currentStateText
+
+
+	//}
+
+
+
 		// STATE ONE
 		// Initial State where the AI will walk towards the player 
 		IEnumerator OnWalk ()
@@ -236,22 +298,18 @@
 
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 5";
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 4";
+
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 3";
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 2";
 
 		yield return new WaitForSeconds(1f);  
-		// Define the current state and output the result on the GUI
 		currentStateText.text = "Starting in 1";
 
 
@@ -269,16 +327,20 @@
 			currentStateText.text = "Boss is in State One";
 
 
-				// Particle System Method
-				ParticleCollision (gameObject);
+			// Particle System Method
+            
+			//ParticleCollision (gameObject);
 
-				//print ("Particle Attack used");
-
+			gunParticles.Play ();
+			mainPlayerHealth.TakeDamage (DamageToGive);
+			gunParticles.Stop ();
 
 			// Define the current state and output the result on the GUI
 			currentStateText.text = "Particle Attack Used";
 
+
 			}
+
 
 			// Switch the state to the Wave Attack State
 			SetState(State.WaveAttack);
@@ -292,6 +354,7 @@
 		currentStateText.text = "Switching to Wave Attack State";
 
 
+
 		}
 
 
@@ -300,11 +363,20 @@
 		IEnumerator OnWaveAttack()
 		{
 
+		// CoolDown Timer Countdown
+		currentStateText.text = "Cooldown Ends in 3";
+		yield return new WaitForSeconds (1f);
+		currentStateText.text = "Cooldown Ends in 2";
+		yield return new WaitForSeconds(1f); 
+		currentStateText.text = "Cooldown Ends in 1";
+		yield return new WaitForSeconds(1f);  
+
+
 			// State Two Code Here
-			print ("YOU ARE IN STATE TWO");
+			print ("BOSS IS IN STATE TWO");
 
 		// Define the current state and output the result on the GUI
-		currentStateText.text = "You are in State Two";
+		currentStateText.text = "Boss is in State Two";
 
 		//print (mainPlayerHealth);
 		
@@ -320,15 +392,14 @@
 			    waveAttackLine.enabled = true; 
 			   
 
-			    // Use the wave attack 
-			    WaveAttack (); 
+
+			     // WaveAttack (); 
+			    // Use the wave attack from the EnemyWaveAttack Script
+			   enemyWaveAttack.WaveAttack (); 
 
 			    //DestroyImmediate(gunLine); 
 				// Play linked audio
 				Audio.Play ();
-
-				// Print a message for debugging only
-				//print ("Wave Attack Used");
 
 
 			// Define the current state and output the result on the GUI
@@ -345,8 +416,7 @@
 
 
 
-
-		//Switch the state to STATE THREE
+		//Switch the state to the Laser Attack State
 		SetState(State.LaserAttack);
 		    // Must yield return null
 		    yield return null;
@@ -369,7 +439,14 @@
 		IEnumerator OnLaserAttack()
 	{
 
-		//print ("YOU ARE IN STATE THREE");
+		// CoolDown Timer Countdown
+		currentStateText.text = "Cooldown Ends in 3";
+		yield return new WaitForSeconds (1f);
+		currentStateText.text = "Cooldown Ends in 2";
+		yield return new WaitForSeconds(1f); 
+		currentStateText.text = "Cooldown Ends in 1";
+		yield return new WaitForSeconds(1f);  
+
 
 		// Define the current state and output the result on the GUI
 		currentStateText.text = "Boss is in State Three";
@@ -377,7 +454,6 @@
 
 		// Switch the scene to the lose state when you lose the game
 		// When the player has a health of the set value then play the lose game music and switch the scene
-
 		// When the player health is higher than 0 
 		while (mainPlayerHealth.currentHealth > 0) {
 
@@ -389,7 +465,9 @@
 
 			// Change Line Renderer Colors 
 
-			LaserAttack (); 
+			enemyLaserAttack.LaserAttack ();
+
+			//LaserAttack (); 
 
 			//DestroyImmediate(gunLine); 
 			// Play linked audio
@@ -411,7 +489,7 @@
 			currentStateText.text = "You are almost dead";
 
 			// Define the current state and output the result on the GUI
-			currentStateText.text = "Switching to Final State";
+			//currentStateText.text = "Switching to Final State";
 
 			if (mainPlayerHealth.currentHealth <= 0) {
 
@@ -471,137 +549,6 @@
 
 
 		// This is the wave attack method that will be used for the enemy wave attack as one of the enemys AI features.
-		// Wave Attack 
-		void WaveAttack ()
-		{
-			//timer = 0f;
-			// Do damange to the player via the WaveAttack from the player health script.
-			// Play the audio sound of the attack 
-			Audio.Play ();
-
-
-		waveAttackLine.material = new Material (Shader.Find("Particles/Additive"));
-		// Set the new colors here
-		waveAttackLine.SetColors (waveAttackColor, waveAttackColor2);
-		 
-			// Particle effects
-			gunParticles.Stop ();
-			gunParticles.Play ();
-			waveAttackLine.enabled = true;
-
-		  // waveAttackLine.SetWidth (50, 50); 
-
-			waveAttackLine.SetPosition (0, transform.position);
-			shootRay.origin = transform.position;
-			shootRay.direction = transform.forward;
-
-
-
-			if(Physics.Raycast (shootRay, out shootHit, projectileRange, PlayerDamageZone))
-			{
-				
-				PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
-
-				// If the playerHealth is higher than 0 then damage the player using the particle effect
-				if(playerHealth.currentHealth > 0)
-				{
-					//  Player will take damage when hit by the LineRenderer. 
-					mainPlayerHealth.TakeDamage (DamageToGive);
-					// Print message for debugging only
-
-					print("PLAYER GOT HIT");
-
-				}
-				waveAttackLine.SetPosition (1, shootHit.point);
-			}
-			else
-			{
-				waveAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
-			}
-		}
-
-
-
-
-	 // Laser Attack
-	void LaserAttack ()
-	{
-		//timer = 0f;
-		// Do damange to the player via the WaveAttack from the player health script.
-		// Play the audio sound of the attack 
-		Audio.Play ();
-
-
-		laserAttackLine.material = new Material (Shader.Find("Particles/Additive"));
-		// Set the new colors here
-		laserAttackLine.SetColors (laserAttackColor,laserAttackColor2);
-
-		  laserAttackLine.SetWidth (1, 1); 
-
-
-		// Particle effects
-		gunParticles.Stop ();
-		gunParticles.Play ();
-
-		laserAttackLine.enabled = true;
-		laserAttackLine.SetPosition (0, transform.position);
-		shootRay.origin = transform.position;
-		shootRay.direction = transform.forward;
-
-
-
-		if(Physics.Raycast (shootRay, out shootHit, projectileRange, PlayerDamageZone))
-		{
-
-			PlayerHealth playerHealth = shootHit.collider.GetComponent <PlayerHealth> ();
-
-
-
-
-			// If the playerHealth is higher than 0 then damage the player using the particle effect
-			if(playerHealth.currentHealth > 0)
-			{
-				//  Player will take damage when hit by the LineRenderer. 
-				mainPlayerHealth.TakeDamage (DamageToGive);
-				// Print message for debugging only
-
-				print("PLAYER GOT HIT");
-
-			}
-			laserAttackLine.SetPosition (1, shootHit.point);
-		}
-		else
-		{
-			laserAttackLine.SetPosition (1, shootRay.origin + shootRay.direction * projectileRange);
-		}
-	}
-
-
-
-
-
-		// Particle Collider System
-		// Make sure that the particle system in unity is set to world and that send collision message is clicked otherwise this script wont work.
-		void ParticleCollision(GameObject other) {
-			Rigidbody body = other.GetComponent<Rigidbody>();
-
-			if (body) {
-				Vector3 direction = other.transform.position - transform.position;
-				direction = direction.normalized;
-
-
-				gunParticles.Play ();
-				mainPlayerHealth.TakeDamage (DamageToGive);
-				gunParticles.Stop ();
-
-
-			}
-
-
-
-		}
-
-
 
 		// Activate Hexagon Method
 		void ActivateHexagonMethod() 

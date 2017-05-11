@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 7ba105172db074c28995a42f170d3fc9
+timeCreated: 1494369175
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jabana Alt
+  fontNames:
+  - Jabana Alt
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
