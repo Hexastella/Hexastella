@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class PlayerController : Unit {
 
 	public float speed;
-	public float jumpheight;
+    public float rotSpeed;
+    public float jumpheight;
     public float deathPos;
     public float dashForce;
     public Transform enemy;
@@ -26,9 +27,6 @@ public class PlayerController : Unit {
             SceneManager.LoadScene("GameScene");
         }
 
-        //player is looking at and rotating around the enemy
-        //transform.LookAt(enemy);
-
         //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
@@ -36,8 +34,14 @@ public class PlayerController : Unit {
 		//Normalize our input vector
 		Vector3 input = new Vector3(horizontalInput, 0, verticalInput).normalized * speed;
         
+        //Quaternion playerRot = Quaternion.LookRotation(relativePos);
+        Quaternion playerRot = new Quaternion(horizontalInput, verticalInput, 0, 0);
+
+        Vector3 playerPos = 
+        transform.rotation = Vector3.MoveTowards(transform.position, Quaternion.LookRotation(transform.forward), rotSpeed);
+
         //JUMP
-		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
 			input.y = jumpheight;
 			anim.SetTrigger("Jump");
@@ -52,7 +56,7 @@ public class PlayerController : Unit {
 
 		// Rotates a vector from local to world space
 		rb.velocity = transform.TransformVector(input);
-
+        
         //RUN animation
         if(verticalInput > 0.1f)
         {
@@ -72,9 +76,8 @@ public class PlayerController : Unit {
         //DASH
         if (Input.GetKeyDown(KeyCode.F))
         {
-            print("boom");
-            //rb.AddRelativeForce(Vector3.back, ForceMode.Force);
-            //transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -40f);
+            print("DASH");
+            rb.AddForce(transform.forward * dashForce, ForceMode.Acceleration);
         }
 
         //DODGE ROLL
@@ -88,7 +91,7 @@ public class PlayerController : Unit {
 
     bool IsGrounded()
 	{
-		//Shoot raycast downw
+		//Shoot raycast down
 		return Physics.Raycast(transform.position, Vector3.down, raycastDistance);
 	}
 }

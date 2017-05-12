@@ -263,7 +263,7 @@ public class EnemyAIController : MonoBehaviour
 
 
 		yield return new WaitForSeconds (1f);
-		currentStateText.text = "Finding Hexagon";
+	//	currentStateText.text = "Finding Hexagon";
 		yield return new WaitForSeconds(1f);  
 		currentStateText.text = "No supported Hexagon found";
 		yield return new WaitForSeconds(1f);  

@@ -21,8 +21,8 @@ public class EnemyParticleAttack : EnemyAIController {
 			Vector3 direction = mainPlayer.transform.position - transform.position;
 		    direction = direction.normalized;
 
-//			enemyAIController.gunParticles.Play ();
-			mainPlayerHealth.TakeDamage (DamageToGive);
+            //			enemyAIController.gunParticles.Play ();
+            mainPlayerHealth.TakeDamage (DamageToGive);
 
 			print("Particle Attack Used");
 			//enemyAIController.gunParticles.Stop ();

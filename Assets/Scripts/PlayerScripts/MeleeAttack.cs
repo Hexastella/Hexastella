@@ -17,7 +17,11 @@ public class MeleeAttack : MonoBehaviour {
 
 	void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            print("Die");
+            mainEnemyHealth.TakeDamage(attackDamage, hitPoint);
+        }
 	}
 
     private void OnTriggerStay(Collider other)
