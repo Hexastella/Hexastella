@@ -6,10 +6,14 @@ public class PlayerHealth : MonoBehaviour
 {
     public int startingHealth = 100;
     public int currentHealth;
+	// Health Slider Component
     public Slider healthSlider;
+	// Damage Image Component
     public Image damageImage;
+	// Set the death clip of the player
     public AudioClip deathClip;
-    public float flashSpeed = 5f;
+	// Set the flash speed of the damageImage
+    public float flashSpeed = 20f;
     public Color flashColor = new Color(1f, 0f, 0f, 0.1f);
 
 

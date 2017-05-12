@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class EnemyHealth : MonoBehaviour
     CapsuleCollider capsuleCollider;
     bool isDead;
     bool isSinking;
+
+	// Set the enemyHealthSlider 
+	public Slider enemyHealthSlider;
 
 
     void Awake ()
@@ -34,6 +38,9 @@ public class EnemyHealth : MonoBehaviour
         {
             transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
         }
+
+		enemyHealthSlider.value = currentHealth;
+
     }
 
 
