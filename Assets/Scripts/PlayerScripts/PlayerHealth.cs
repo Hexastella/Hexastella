@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     Animator anim;
     AudioSource playerAudio;
-    PlayerMovement playerMovement;
+    PlayerController playerController;
     bool isDead;
     bool damaged;
 
@@ -28,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
     {
         anim = GetComponent <Animator> ();
         playerAudio = GetComponent <AudioSource> ();
-        playerMovement = GetComponent <PlayerMovement> ();
+        playerController = GetComponent <PlayerController> ();
         currentHealth = startingHealth;
     }
 
@@ -75,6 +75,7 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.clip = deathClip;
         playerAudio.Play ();
 
-        //playerMovement.enabled = false;
+        playerController.enabled = false;
+        print("Bye");
     }
 }

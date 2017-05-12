@@ -26,9 +26,6 @@ public class PlayerController : Unit {
             SceneManager.LoadScene("GameScene");
         }
 
-        //player is looking at and rotating around the enemy
-        transform.LookAt(enemy);
-
         float enemyDis = Vector3.Distance(enemy.position, transform.position);
         float camDis = Vector3.Distance(cam.position, transform.position);
         //print("Enemy Distance: " + enemyDis + " Camera Distance: " + camDis);
