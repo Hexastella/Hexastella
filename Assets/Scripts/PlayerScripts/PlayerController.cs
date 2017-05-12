@@ -27,7 +27,7 @@ public class PlayerController : Unit {
         }
 
         //player is looking at and rotating around the enemy
-        transform.LookAt(enemy);
+        //transform.LookAt(enemy);
 
         //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
@@ -40,7 +40,7 @@ public class PlayerController : Unit {
 		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
 			input.y = jumpheight;
-			//anim.SetTrigger("Jump");
+			anim.SetTrigger("Jump");
 		} else
         {
 			//make sure that the Y value of input is not 0
