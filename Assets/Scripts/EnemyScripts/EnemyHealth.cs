@@ -39,7 +39,6 @@ public class EnemyHealth : MonoBehaviour
             transform.Translate (-Vector3.up * sinkSpeed * Time.deltaTime);
         }
 
-		enemyHealthSlider.value = currentHealth;
 
     }
 
@@ -55,6 +54,9 @@ public class EnemyHealth : MonoBehaviour
             
         hitParticles.transform.position = hitPoint;
         hitParticles.Play();
+
+		enemyHealthSlider.value = currentHealth;
+
 
         if(currentHealth <= 0)
         {
