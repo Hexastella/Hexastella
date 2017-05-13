@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class PlayerController : Unit {
 
 	public float speed;
+    private float AnimSpeed = 0;
 	public float jumpheight;
     public float deathPos;
     public float dashForce;
     public Transform enemy;
-    public Transform cam;
 
 	private float raycastDistance = 1f;
 
@@ -25,15 +25,25 @@ public class PlayerController : Unit {
         {
             SceneManager.LoadScene("GameScene");
         }
+
         //MOVEMENT
-		float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
 
-		//Normalize our input vector
-		Vector3 input = new Vector3(horizontalInput, 0, verticalInput).normalized * speed;
+        //Normalize our input vector
+        Vector3 input = new Vector3(-horizontalInput, 0, -verticalInput);
+
+        //Rotate player
+        if(input != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(input), 0.15f);
+        }
+
+        print(input * speed * Time.deltaTime);
+        transform.Translate(input * speed * Time.deltaTime, Space.World);
         
         //JUMP
-		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
 			input.y = jumpheight;
 			anim.SetTrigger("Jump");
@@ -46,18 +56,12 @@ public class PlayerController : Unit {
 		//clamp max length of speed
 		input = Vector3.ClampMagnitude(input, speed);
 
-		// Rotates a vector from local to world space
-		rb.velocity = transform.TransformVector(input);
+        // Rotates a vector from local to world space
+        //rb.velocity = transform.TransformVector(input);
 
         //RUN animation
-        //if(verticalInput > 0.1f)
-        //{
-        //    anim.SetBool("Run", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("Run", false);
-        //}
+        anim.SetFloat("VerticalSpeed", Mathf.Abs(verticalInput));
+        anim.SetFloat("HorizontalSpeed", Mathf.Abs(horizontalInput));
 
         //SLASH animation
         if (Input.GetMouseButtonDown(0))

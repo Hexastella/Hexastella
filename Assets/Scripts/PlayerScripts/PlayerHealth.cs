@@ -76,6 +76,5 @@ public class PlayerHealth : MonoBehaviour
         playerAudio.Play ();
 
         playerController.enabled = false;
-        print("Bye");
     }
 }
