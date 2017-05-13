@@ -30,7 +30,6 @@ sysinfo.txt
 *.unitypackage
 
 Assets/Art/Hexagons.prefab
-Assets/Scenes/GameScene.unity
 
 ProjectSettings/ProjectSettings.asset
 
