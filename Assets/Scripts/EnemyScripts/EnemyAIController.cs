@@ -380,7 +380,7 @@ public class EnemyAIController : MonoBehaviour
 			   while (mainPlayerHealth.currentHealth >= 150) {
 				// Wait for defined amount of time before executing next Wave Attack
 		
-				yield return new WaitForSeconds(1f);
+				yield return new WaitForSeconds(0.1f);
 				// Call the Wave Attack Functio every set amount of time predefined
 				// Set the gunLine renderer to true so that when the boss shoots it will show the lineRenderer.
 
@@ -390,11 +390,16 @@ public class EnemyAIController : MonoBehaviour
 
 			     // WaveAttack (); 
 			    // Use the wave attack from the EnemyWaveAttack Script
+			  yield return new WaitForSeconds(1f);
+
 			   enemyWaveAttack.WaveAttack (); 
 
 			    //DestroyImmediate(gunLine); 
 				// Play linked audio
-				Audio.Play ();
+				//Audio.Play ();
+
+			AudioSource waveAttackSound = gameObject.AddComponent<AudioSource >();
+			waveAttackSound.PlayOneShot((AudioClip)Resources.Load("DeathRay"));
 
 
 			// Define the current state and output the result on the GUI

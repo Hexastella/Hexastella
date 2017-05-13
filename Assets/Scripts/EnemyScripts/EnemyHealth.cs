@@ -17,6 +17,12 @@ public class EnemyHealth : MonoBehaviour
     bool isDead;
     bool isSinking;
 
+	// Add the enemyDamageIma
+	public Image enemyDamageImage;
+
+	// Set the flash speed of the damageImage
+	public float flashSpeed = 20f;
+
 	// Set the enemyHealthSlider 
 	public Slider enemyHealthSlider;
 
