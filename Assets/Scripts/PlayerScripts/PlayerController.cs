@@ -25,11 +25,6 @@ public class PlayerController : Unit {
         {
             SceneManager.LoadScene("GameScene");
         }
-
-        float enemyDis = Vector3.Distance(enemy.position, transform.position);
-        float camDis = Vector3.Distance(cam.position, transform.position);
-        //print("Enemy Distance: " + enemyDis + " Camera Distance: " + camDis);
-
         //MOVEMENT
 		float horizontalInput = Input.GetAxis("Horizontal");
 		float verticalInput = Input.GetAxis("Vertical");
@@ -41,7 +36,7 @@ public class PlayerController : Unit {
 		if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
 			input.y = jumpheight;
-			//anim.SetTrigger("Jump");
+			anim.SetTrigger("Jump");
 		} else
         {
 			//make sure that the Y value of input is not 0
@@ -55,14 +50,14 @@ public class PlayerController : Unit {
 		rb.velocity = transform.TransformVector(input);
 
         //RUN animation
-        if(verticalInput > 0.1f)
-        {
-            anim.SetBool("Run", true);
-        }
-        else
-        {
-            anim.SetBool("Run", false);
-        }
+        //if(verticalInput > 0.1f)
+        //{
+        //    anim.SetBool("Run", true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("Run", false);
+        //}
 
         //SLASH animation
         if (Input.GetMouseButtonDown(0))
@@ -73,9 +68,8 @@ public class PlayerController : Unit {
         //DASH
         if (Input.GetKeyDown(KeyCode.F))
         {
-            print("boom");
-            //rb.AddRelativeForce(Vector3.back, ForceMode.Force);
-            //transform.position += new Vector3(speed * Time.deltaTime, 0.0f, -40f);
+            print("DASH");
+            rb.AddForce(transform.forward * dashForce, ForceMode.Acceleration);
         }
 
         //DODGE ROLL
